@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psico Hábitat | Bienestar y Conexión</title>
+    <!-- Iconos para dar un toque profesional y cálido -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- 1. VARIABLES DE COLOR (Psicología del Color) --- */
+        :root {
+            --primary-mint: #95d5b2;  /* Calma, naturaleza */
+            --soft-blue: #a2d2ff;     /* Serenidad */
+            --earth-sand: #faedcd;    /* Calidez */
+            --earth-dark: #d4a373;    /* Acento tierra */
+            --text-dark: #2f3e46;     /* Texto legible pero suave */
+            --white-soft: #f8f9fa;    /* Fondo limpio */
+            --alert-soft: #ffb4a2;    /* Para crisis, no agresivo */
+            --gemini-purple: #8e44ad; /* Color para características IA */
+        }
+
+        /* --- 2. RESET Y BASES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white-soft);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 80px; /* Espacio para el footer fijo si fuera necesario */
+        }
+
+        /* --- 3. LAYOUT GENERAL --- */
+        .container {
+            max-width: 600px; /* Ancho tipo "App móvil" centrado */
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 4. HEADER --- */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--earth-sand);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+        .logo i { color: var(--primary-mint); }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* --- 5. NAVEGACIÓN ENTRE SECCIONES --- */
+        .section {
+            display: none; /* Ocultamos todo por defecto */
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block; /* Solo mostramos la activa */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--earth-dark);
+            text-align: center;
+        }
+
+        /* --- 6. COMPONENTE: BOTONES DE ÁNIMO (GRID) --- */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .mood-card {
+            background: white;
+            border: 2px solid var(--earth-sand);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .mood-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-mint);
+            background-color: #f0fff4;
+        }
+
+        .mood-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--earth-dark);
+        }
+
+        .mood-card span {
+            display: block;
+            font-weight: 600;
+        }
+
+        /* --- NUEVO: COMPONENTE IA (CHAT) --- */
+        .ai-companion-box {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid var(--soft-blue);
+            box-shadow: 0 4px 10px rgba(162, 210, 255, 0.2);
+        }
+
+        .ai-title {
+            font-size: 1.1rem;
+            color: var(--gemini-purple);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .ai-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            resize: none;
+            height: 80px;
+            font-size: 0.95rem;
+        }
+
+        .btn-ai {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .btn-ai:hover { transform: scale(1.02); }
+        
+        .ai-result {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f0fc;
+            border-radius: 8px;
+            border-left: 4px solid var(--gemini-purple);
+            font-size: 0.9rem;
+            display: none; /* Oculto hasta tener respuesta */
+            white-space: pre-wrap; /* Mantiene saltos de línea */
+        }
+
+        /* --- 7. LISTA DE RECURSOS --- */
+        .resource-card {
+            background: white;
+            border-left: 5px solid var(--primary-mint);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resource-info h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .resource-info p { font-size: 0.85rem; color: #666; }
+        .resource-type { 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            background: var(--earth-sand); 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+        }
+
+        .btn-action {
+            background-color: var(--primary-mint);
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .btn-action:hover { background-color: #74c69d; }
+
+        .btn-back {
+            background: transparent;
+            border: none;
+            color: #666;
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1rem;
+        }
+
+        /* --- 8. DIRECTORIO PREMIUM (Buscador Externo) --- */
+        .external-search-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .search-input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .search-input-group label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .search-input-group select, .search-input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--earth-sand);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input-group select:focus, .search-input-group input:focus {
+            border-color: var(--primary-mint);
+        }
+
+        .btn-search-external {
+            width: 100%;
+            background-color: #00d3a5; /* Color similar a Doctoralia para familiaridad */
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+        .btn-search-external:hover {
+            background-color: #00b38b;
+        }
+
+        /* --- 9. CIERRE VERDE (GAMIFICACIÓN) --- */
+        .green-closure {
+            margin-top: 30px;
+            background: linear-gradient(135deg, #e9edc9 0%, #ccd5ae 100%);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px dashed #88b04b;
+        }
+
+        .green-closure h3 { color: #3a5a40; margin-bottom: 10px; }
+        .green-closure p { font-size: 0.95rem; margin-bottom: 15px; }
+        
+        .mission-text {
+            font-weight: bold; 
+            color: #3a5a40; 
+            display: block; 
+            margin: 10px 0;
+            min-height: 40px; /* Evita saltos si cambia el texto */
+        }
+
+        .btn-magic-mission {
+            background: white;
+            border: 1px solid #88b04b;
+            color: #3a5a40;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .btn-magic-mission:hover { background: #f0fff4; }
+
+        .reaction-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .reaction-btn {
+            background: white;
+            border: none;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .reaction-btn:hover { transform: scale(1.2); }
+
+        /* --- 10. MODAL DE REDIRECCIÓN (CUENTA REGRESIVA) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(47, 62, 70, 0.9); /* Fondo oscuro con transparencia */
+            display: none; /* Oculto por defecto */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            border-bottom: 5px solid var(--primary-mint);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--primary-mint);
+            margin-bottom: 15px;
+        }
+
+        .countdown-circle {
+            width: 60px; height: 60px;
+            background: var(--earth-sand);
+            color: var(--text-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px auto;
+        }
+
+        /* Botón navegación inferior */
+        .nav-bottom {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .nav-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 10px;
+        }
+        .nav-link.active-link { color: var(--earth-dark); font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo"><i class="fas fa-leaf"></i> Psico Hábitat</div>
+        <div class="tagline">Tu espacio de calma y conexión</div>
+    </header>
+
+    <!-- === SECCIÓN 1: HOME / DIAGNÓSTICO === -->
+    <div id="home-section" class="section active">
+        <h2>¿Cómo te sientes hoy?</h2>
+        <p style="text-align: center; margin-bottom: 25px; color: #666;">Selecciona lo que más resuena contigo ahora mismo.</p>
+        
+        <div class="mood-grid">
+            <div class="mood-card" onclick="filtrarRecursos('tristeza')">
+                <i class="fas fa-cloud-rain"></i>
+                <span>Estoy triste</span>
+            </div>
+            <div class="mood-card" onclick="filtrarRecursos('ansiedad')">
+                <i class="fas fa-wind"></i>
+                <span>Ansiedad</span>
+            </div>
+            <div class="mood-card" onclick="filtrarRecursos('soledad')">
+                <i class="fas fa-user-friends"></i>
+                <span>Me siento solo</span>
+            </div>
+            <div class="mood-card" onclick="filtrarRecursos('panico')">
+                <i class="fas fa-heartbeat" style="color: var(--alert-soft)"></i>
+                <span>Crisis Pánico</span>
+            </div>
+        </div>
+        
+        <!-- NUEVO: SECCIÓN DE IA GEMINI -->
+        <div class="ai-companion-box">
+            <div class="ai-title"><i class="fas fa-magic"></i> ¿Prefieres contármelo?</div>
+            <textarea id="ai-mood-input" class="ai-input" placeholder="Escribe aquí cómo te sientes... (Ej: 'Tengo miedo del futuro y no puedo dormir')"></textarea>
+            <button class="btn-ai" onclick="consultarIA()">
+                ✨ Recibir Consejo Personalizado
+            </button>
+            <div id="ai-response-container" class="ai-result"></div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <p>¿Buscas atención profesional especializada?</p>
+            <button class="btn-action" style="background: var(--soft-blue); margin-top: 10px;" onclick="irA('premium-section')">
+                Ver Directorio de Psicólogos
+            </button>
+        </div>
+    </div>
+
+    <!-- === SECCIÓN 2: RECURSOS === -->
+    <div id="resources-section" class="section">
+        <button class="btn-back" onclick="irA('home-section')">
+            <i class="fas fa-arrow-left"></i> Volver
+        </button>
+
+        <h2 id="result-title">Recursos para ti</h2>
+        
+        <div id="resources-list"></div>
+
+        <!-- EL CIERRE VERDE MEJORADO CON IA -->
+        <div class="green-closure">
+            <h3><i class="fas fa-globe-americas"></i> Tu Acción del Día</h3>
+            <p>Si este espacio te brindó un respiro, ayúdanos a cuidar nuestro hábitat común.</p>
+            
+            <span id="green-mission-text" class="mission-text">"Recoge una lata o plástico hoy y tíralo en su lugar."</span>
+            
+            <!-- Botón para generar nueva misión con IA -->
+            <button class="btn-magic-mission" onclick="generarMisionIA()">
+                ✨ Generar nueva misión mágica
+            </button>
+
+            <p style="font-size: 0.8rem; margin-top: 5px;">Pequeñas acciones sanan tu mente y el planeta.</p>
+            
+            <div class="reaction-bar">
+                <button class="reaction-btn" title="Me comprometo">❤️</button>
+                <button class="reaction-btn" title="Hecho">✅</button>
+                <button class="reaction-btn" title="Inspirador">🌱</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- === SECCIÓN 3: PREMIUM === -->
+    <div id="premium-section" class="section">
+        <button class="btn-back" onclick="irA('home-section')">
+            <i class="fas fa-arrow-left"></i> Volver al Inicio
+        </button>
+
+        <h2>Directorio de Especialistas</h2>
+        <p style="text-align:center; font-size:0.9rem; margin-bottom:20px; color:#666">
+            Conectamos directamente con la base de datos de <strong>Doctoralia</strong> para mostrarte especialistas certificados.
+        </p>
+
+        <div class="external-search-box">
+            <div class="search-input-group">
+                <label for="specialty-input">¿Qué especialista buscas?</label>
+                <select id="specialty-input">
+                    <option value="psicologo">Psicólogo</option>
+                    <option value="psiquiatra">Psiquiatra</option>
+                    <option value="psicoterapeuta">Psicoterapeuta</option>
+                    <option value="terapeuta-complementario">Terapeuta Complementario</option>
+                </select>
+            </div>
+
+            <div class="search-input-group">
+                <label for="city-input">¿En qué ciudad?</label>
+                <input type="text" id="city-input" placeholder="Ej: Ciudad de México, Guadalajara..." />
+            </div>
+
+            <button onclick="prepararRedireccion()" class="btn-search-external">
+                <i class="fas fa-search"></i> Buscar Profesionales
+            </button>
+        </div>
+    </div>
+
+    <div class="nav-bottom">
+        <a href="#" onclick="irA('home-section')" class="nav-link">Inicio</a>
+        <a href="#" onclick="irA('premium-section')" class="nav-link">Profesionales</a>
+        <a href="#" class="nav-link">Nosotros</a>
+    </div>
+</div>
+
+<!-- === MODAL DE REDIRECCIÓN (OCULTO) === -->
+<div id="redirect-modal" class="modal-overlay">
+    <div class="modal-content">
+        <i class="fas fa-hand-holding-heart modal-icon"></i>
+        <h3>Un momento, por favor...</h3>
+        
+        <p style="margin-top: 15px; font-size: 1rem; color: #555;">
+            Si deseas apoyar a esta web, recuerda nuestra misión ecológica:
+        </p>
+        <p style="margin-top: 10px; font-weight: bold; color: #3a5a40; font-size: 1.1rem;">
+            "¡Ayúdanos recogiendo una lata o basura en tu camino hoy!"
+        </p>
+
+        <div class="countdown-circle" id="countdown-timer">5</div>
+        
+        <p style="font-size: 0.8rem; color: #999;">
+            Te estamos redirigiendo a Doctoralia...
+        </p>
+        
+        <!-- Botón para cancelar por si el usuario se arrepiente -->
+        <button onclick="cancelarRedireccion()" style="margin-top: 15px; border: none; background: none; text-decoration: underline; color: #777; cursor: pointer;">
+            Cancelar
+        </button>
+    </div>
+</div>
+
+<script>
+    // --- GEMINI API SETUP ---
+    const apiKey = ""; // La clave se inyectará automáticamente en el entorno de ejecución
+    
+    // Función helper para llamar a Gemini
+    async function callGemini(promptText) {
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{ text: promptText }]
+                    }]
+                })
+            });
+
+            if (!response.ok) throw new Error('Error en la API');
+            
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        } catch (error) {
+            console.error("Error llamando a Gemini:", error);
+            return null;
+        }
+    }
+
+    // --- NUEVO: FUNCIÓN DE CONSEJO PERSONALIZADO (IA) ---
+    async function consultarIA() {
+        const input = document.getElementById('ai-mood-input').value.trim();
+        const resultBox = document.getElementById('ai-response-container');
+        
+        if (!input) {
+            alert("Por favor, escribe brevemente cómo te sientes.");
+            return;
+        }
+
+        // Estado de carga
+        resultBox.style.display = 'block';
+        resultBox.innerText = "✨ Conectando con tu guía interior... (Procesando)";
+        
+        const prompt = `
+            Actúa como un consejero de salud mental empático y cálido llamado "PsicoGuía".
+            El usuario dice: "${input}".
+            
+            Tu tarea:
+            1. Valida sus sentimientos en 1 o 2 frases cortas y cálidas.
+            2. Sugiere UNA acción inmediata muy simple (respiración, tomar agua, ver el cielo).
+            3. Mantén el tono suave, no médico, sino de acompañamiento.
+            4. Responde en Español.
+        `;
+
+        const respuesta = await callGemini(prompt);
+
+        if (respuesta) {
+            resultBox.innerText = respuesta;
+        } else {
+            resultBox.innerText = "Lo siento, la conexión con la guía falló. Intenta respirar profundo y probar de nuevo.";
+        }
+    }
+
+    // --- NUEVO: FUNCIÓN DE MISIÓN ECOLÓGICA MÁGICA (IA) ---
+    async function generarMisionIA() {
+        const missionText = document.getElementById('green-mission-text');
+        
+        missionText.innerText = "✨ Creando misión mágica...";
+        
+        const prompt = `
+            Genera una "micro-misión ecológica" única para una persona que busca bienestar.
+            Debe ser:
+            1. Muy fácil de hacer en menos de 5 minutos.
+            2. Conectada con la naturaleza o el cuidado del entorno.
+            3. Con un tono poético o inspirador.
+            4. Máximo 15 palabras.
+            
+            Ejemplos: "Encuentra una hoja seca y agradece su ciclo de vida", "Riega una planta y dile palabras de aliento".
+        `;
+
+        const respuesta = await callGemini(prompt);
+
+        if (respuesta) {
+            // Limpiamos comillas extra si la IA las pone
+            missionText.innerText = `"${respuesta.replace(/"/g, '')}"`;
+        } else {
+            missionText.innerText = '"Abraza un árbol cercano y siente su calma."';
+        }
+    }
+
+    // --- 1. BASE DE DATOS LOCAL ---
+    const bdRecursos = [
+        { id: 1, tag: 'ansiedad', titulo: 'Respiración Guiada 4-7-8', tipo: 'Ejercicio', link: '#' },
+        { id: 2, tag: 'ansiedad', titulo: 'App Calm (Versión Gratuita)', tipo: 'App', link: '#' },
+        { id: 3, tag: 'tristeza', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+        { id: 4, tag: 'tristeza', titulo: 'Playlist: Música Suave', tipo: 'Web', link: '#' },
+        { id: 5, tag: 'soledad', titulo: 'Comunidad Discord "Apoyo Mutuo"', tipo: 'Chat', link: '#' },
+        { id: 6, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
+        { id: 7, tag: 'panico', titulo: 'Guía visual: Grounding', tipo: 'Lectura', link: '#' },
+    ];
+
+    // --- 2. NAVEGACIÓN ---
+    function irA(sectionId) {
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // --- 3. RECURSOS ---
+    function filtrarRecursos(estadoAnimo) {
+        const contenedor = document.getElementById('resources-list');
+        const titulo = document.getElementById('result-title');
+        contenedor.innerHTML = ''; 
+        
+        const textos = {
+            'ansiedad': 'Para calmar tu mente...',
+            'tristeza': 'Un abrazo digital para ti...',
+            'soledad': 'Conectemos con otros...',
+            'panico': 'Respira, aquí tienes ayuda inmediata...'
+        };
+        titulo.innerText = textos[estadoAnimo] || 'Recursos para ti';
+
+        const resultados = bdRecursos.filter(r => r.tag === estadoAnimo);
+
+        if(resultados.length === 0) {
+            contenedor.innerHTML = '<p>No encontramos recursos específicos.</p>';
+        } else {
+            resultados.forEach(item => {
+                const card = `
+                    <div class="resource-card">
+                        <div class="resource-info">
+                            <span class="resource-type">${item.tipo}</span>
+                            <h3>${item.titulo}</h3>
+                        </div>
+                        <a href="${item.link}" class="btn-action">Ver</a>
+                    </div>
+                `;
+                contenedor.innerHTML += card;
+            });
+        }
+        irA('resources-section');
+    }
+
+    // --- 4. LÓGICA DE REDIRECCIÓN Y TIMER ---
+    let timerInterval = null;
+
+    function prepararRedireccion() {
+        const ciudadInput = document.getElementById('city-input').value.trim();
+
+        if (!ciudadInput) {
+            alert("Por favor, escribe una ciudad para buscar.");
+            return;
+        }
+
+        // Mostrar Modal
+        const modal = document.getElementById('redirect-modal');
+        const timerDisplay = document.getElementById('countdown-timer');
+        modal.style.display = 'flex';
+        
+        let timeLeft = 5;
+        timerDisplay.innerText = timeLeft;
+
+        // Iniciar Cuenta Regresiva
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerDisplay.innerText = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                ejecutarRedireccion();
+                // Ocultar modal después de un momento para que al volver no siga ahí
+                setTimeout(() => { modal.style.display = 'none'; }, 1000);
+            }
+        }, 1000);
+    }
+
+    function ejecutarRedireccion() {
+        const especialidad = document.getElementById('specialty-input').value;
+        const ciudadInput = document.getElementById('city-input').value.trim();
+        
+        const ciudadFormateada = ciudadInput.toLowerCase()
+                                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                .replace(/ /g, "-");
+
+        const urlDestino = `https://www.doctoralia.com.mx/${especialidad}/${ciudadFormateada}`;
+        
+        window.open(urlDestino, '_blank');
+    }
+
+    function cancelarRedireccion() {
+        if (timerInterval) clearInterval(timerInterval);
+        document.getElementById('redirect-modal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

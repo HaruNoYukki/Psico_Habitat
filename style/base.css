@@ -1,0 +1,482 @@
+/* --- 1. VARIABLES DE COLOR (Psicología del Color) --- */
+:root {
+    --primary-mint: #95d5b2;
+    /* Calma, naturaleza */
+    --soft-blue: #a2d2ff;
+    /* Serenidad */
+    --earth-sand: #faedcd;
+    /* Calidez */
+    --earth-dark: #d4a373;
+    /* Acento tierra */
+    --text-dark: #2f3e46;
+    /* Texto legible pero suave */
+    --white-soft: #f8f9fa;
+    /* Fondo limpio */
+    --alert-soft: #ffb4a2;
+    /* Para crisis, no agresivo */
+    --gemini-purple: #8e44ad;
+    /* Color para características IA */
+}
+
+
+/* --- 2. RESET Y BASES --- */
+.fredoka{
+    font-family: "Fredoka", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+.nunito{
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Fredoka,Nunito;
+}
+
+h1{
+    font: fredoka;
+    text-align: center;
+}
+
+p{
+    font: nunito;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+span{
+    font: fredoka;
+}
+
+body {
+    background-color: var(--white-soft);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding-bottom: 80px;
+    /* Espacio para el footer fijo si fuera necesario */
+}
+
+/* --- 3. LAYOUT GENERAL --- */
+.container {
+    max-width: 600px;
+    /* Ancho tipo "App móvil" centrado */
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 4. HEADER --- */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--earth-sand);
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.logo i {
+    color: var(--primary-mint);
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* --- 5. NAVEGACIÓN ENTRE SECCIONES --- */
+.section {
+    display: none;
+    /* Ocultamos todo por defecto */
+    animation: fadeIn 0.5s ease;
+}
+
+.section.active {
+    display: block;
+    /* Solo mostramos la activa */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: var(--earth-dark);
+    text-align: center;
+}
+
+/* --- 6. COMPONENTE: BOTONES DE ÁNIMO (GRID) --- */
+.mood-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.mood-card {
+    background: white;
+    border: 2px solid var(--earth-sand);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.mood-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-mint);
+    background-color: #f0fff4;
+}
+
+.mood-card i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--earth-dark);
+}
+
+.mood-card span {
+    display: block;
+    font-weight: 600;
+}
+
+/* --- NUEVO: COMPONENTE IA (CHAT) --- */
+.ai-companion-box {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid var(--soft-blue);
+    box-shadow: 0 4px 10px rgba(162, 210, 255, 0.2);
+}
+
+.ai-title {
+    font-size: 1.1rem;
+    color: var(--gemini-purple);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.ai-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    resize: none;
+    height: 80px;
+    font-size: 0.95rem;
+}
+
+.btn-ai {
+    background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.btn-ai:hover {
+    transform: scale(1.02);
+}
+
+.ai-result {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f8f0fc;
+    border-radius: 8px;
+    border-left: 4px solid var(--gemini-purple);
+    font-size: 0.9rem;
+    display: none;
+    /* Oculto hasta tener respuesta */
+    white-space: pre-wrap;
+    /* Mantiene saltos de línea */
+}
+
+/* --- 7. LISTA DE RECURSOS --- */
+.resource-card {
+    background: white;
+    border-left: 5px solid var(--primary-mint);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resource-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.resource-info p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.resource-type {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    background: var(--earth-sand);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.btn-action {
+    background-color: var(--primary-mint);
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.btn-action:hover {
+    background-color: #74c69d;
+}
+
+.btn-back {
+    background: transparent;
+    border: none;
+    color: #666;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+}
+
+/* --- 8. DIRECTORIO PREMIUM (Buscador Externo) --- */
+.external-search-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.search-input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.search-input-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #666;
+    font-weight: 600;
+}
+
+.search-input-group select,
+.search-input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--earth-sand);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-input-group select:focus,
+.search-input-group input:focus {
+    border-color: var(--primary-mint);
+}
+
+.btn-search-external {
+    width: 100%;
+    background-color: #00d3a5;
+    /* Color similar a Doctoralia para familiaridad */
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+
+.btn-search-external:hover {
+    background-color: #00b38b;
+}
+
+/* --- 9. CIERRE VERDE (GAMIFICACIÓN) --- */
+.green-closure {
+    margin-top: 30px;
+    background: linear-gradient(135deg, #e9edc9 0%, #ccd5ae 100%);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px dashed #88b04b;
+}
+
+.green-closure h3 {
+    color: #3a5a40;
+    margin-bottom: 10px;
+}
+
+.green-closure p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.mission-text {
+    font-weight: bold;
+    color: #3a5a40;
+    display: block;
+    margin: 10px 0;
+    min-height: 40px;
+    /* Evita saltos si cambia el texto */
+}
+
+.btn-magic-mission {
+    background: white;
+    border: 1px solid #88b04b;
+    color: #3a5a40;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.btn-magic-mission:hover {
+    background: #f0fff4;
+}
+
+.reaction-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.reaction-btn {
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.reaction-btn:hover {
+    transform: scale(1.2);
+}
+
+/* --- 10. MODAL DE REDIRECCIÓN (CUENTA REGRESIVA) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(47, 62, 70, 0.9);
+    /* Fondo oscuro con transparencia */
+    display: none;
+    /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    border-bottom: 5px solid var(--primary-mint);
+}
+
+.modal-icon {
+    font-size: 3rem;
+    color: var(--primary-mint);
+    margin-bottom: 15px;
+}
+
+.countdown-circle {
+    width: 60px;
+    height: 60px;
+    background: var(--earth-sand);
+    color: var(--text-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 20px auto;
+}
+
+/* Botón navegación inferior */
+.nav-bottom {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.nav-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+.nav-link.active-link {
+    color: var(--earth-dark);
+    font-weight: bold;
+}

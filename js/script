@@ -1,0 +1,192 @@
+// --- GEMINI API SETUP ---
+const apiKey = ""; // La clave se inyectará automáticamente en el entorno de ejecución
+
+// Función helper para llamar a Gemini
+async function callGemini(promptText) {
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: promptText }]
+                }]
+            })
+        });
+
+        if (!response.ok) throw new Error('Error en la API');
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
+    } catch (error) {
+        console.error("Error llamando a Gemini:", error);
+        return null;
+    }
+}
+
+// --- NUEVO: FUNCIÓN DE CONSEJO PERSONALIZADO (IA) ---
+async function consultarIA() {
+    const input = document.getElementById('ai-mood-input').value.trim();
+    const resultBox = document.getElementById('ai-response-container');
+
+    if (!input) {
+        alert("Por favor, escribe brevemente cómo te sientes.");
+        return;
+    }
+
+    // Estado de carga
+    resultBox.style.display = 'block';
+    resultBox.innerText = "✨ Conectando con tu guía interior... (Procesando)";
+
+    const prompt = `
+            Actúa como un consejero de salud mental empático y cálido llamado "PsicoGuía".
+            El usuario dice: "${input}".
+            
+            Tu tarea:
+            1. Valida sus sentimientos en 1 o 2 frases cortas y cálidas.
+            2. Sugiere UNA acción inmediata muy simple (respiración, tomar agua, ver el cielo).
+            3. Mantén el tono suave, no médico, sino de acompañamiento.
+            4. Responde en Español.
+        `;
+
+    const respuesta = await callGemini(prompt);
+
+    if (respuesta) {
+        resultBox.innerText = respuesta;
+    } else {
+        resultBox.innerText = "Lo siento, la conexión con la guía falló. Intenta respirar profundo y probar de nuevo.";
+    }
+}
+
+// --- NUEVO: FUNCIÓN DE MISIÓN ECOLÓGICA MÁGICA (IA) ---
+async function generarMisionIA() {
+    const missionText = document.getElementById('green-mission-text');
+
+    missionText.innerText = "✨ Creando misión mágica...";
+
+    const prompt = `
+            Genera una "micro-misión ecológica" única para una persona que busca bienestar.
+            Debe ser:
+            1. Muy fácil de hacer en menos de 5 minutos.
+            2. Conectada con la naturaleza o el cuidado del entorno.
+            3. Con un tono poético o inspirador.
+            4. Máximo 15 palabras.
+            
+            Ejemplos: "Encuentra una hoja seca y agradece su ciclo de vida", "Riega una planta y dile palabras de aliento".
+        `;
+
+    const respuesta = await callGemini(prompt);
+
+    if (respuesta) {
+        // Limpiamos comillas extra si la IA las pone
+        missionText.innerText = `"${respuesta.replace(/"/g, '')}"`;
+    } else {
+        missionText.innerText = '"Abraza un árbol cercano y siente su calma."';
+    }
+}
+
+// --- 1. BASE DE DATOS LOCAL ---
+const bdRecursos = [
+    { id: 1, tag: 'ansiedad', titulo: 'Respiración Guiada 4-7-8', tipo: 'Ejercicio', link: '#' },
+    { id: 2, tag: 'ansiedad', titulo: 'App Calm (Versión Gratuita)', tipo: 'App', link: '#' },
+    { id: 3, tag: 'tristeza', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+    { id: 4, tag: 'tristeza', titulo: 'Playlist: Música Suave', tipo: 'Web', link: '#' },
+    { id: 5, tag: 'soledad', titulo: 'Comunidad Discord "Apoyo Mutuo"', tipo: 'Chat', link: '#' },
+    { id: 6, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
+    { id: 7, tag: 'panico', titulo: 'Guía visual: Grounding', tipo: 'Lectura', link: '#' },
+];
+
+// --- 2. NAVEGACIÓN ---
+function irA(sectionId) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// --- 3. RECURSOS ---
+function filtrarRecursos(estadoAnimo) {
+    const contenedor = document.getElementById('resources-list');
+    const titulo = document.getElementById('result-title');
+    contenedor.innerHTML = '';
+
+    const textos = {
+        'ansiedad': 'Para calmar tu mente...',
+        'tristeza': 'Un abrazo digital para ti...',
+        'soledad': 'Conectemos con otros...',
+        'panico': 'Respira, aquí tienes ayuda inmediata...'
+    };
+    titulo.innerText = textos[estadoAnimo] || 'Recursos para ti';
+
+    const resultados = bdRecursos.filter(r => r.tag === estadoAnimo);
+
+    if (resultados.length === 0) {
+        contenedor.innerHTML = '<p>No encontramos recursos específicos.</p>';
+    } else {
+        resultados.forEach(item => {
+            const card = `
+                    <div class="resource-card">
+                        <div class="resource-info">
+                            <span class="resource-type">${item.tipo}</span>
+                            <h3>${item.titulo}</h3>
+                        </div>
+                        <a href="${item.link}" class="btn-action">Ver</a>
+                    </div>
+                `;
+            contenedor.innerHTML += card;
+        });
+    }
+    irA('resources-section');
+}
+
+// --- 4. LÓGICA DE REDIRECCIÓN Y TIMER ---
+let timerInterval = null;
+
+function prepararRedireccion() {
+    const ciudadInput = document.getElementById('city-input').value.trim();
+
+    if (!ciudadInput) {
+        alert("Por favor, escribe una ciudad para buscar.");
+        return;
+    }
+
+    // Mostrar Modal
+    const modal = document.getElementById('redirect-modal');
+    const timerDisplay = document.getElementById('countdown-timer');
+    modal.style.display = 'flex';
+
+    let timeLeft = 5;
+    timerDisplay.innerText = timeLeft;
+
+    // Iniciar Cuenta Regresiva
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            ejecutarRedireccion();
+            // Ocultar modal después de un momento para que al volver no siga ahí
+            setTimeout(() => { modal.style.display = 'none'; }, 1000);
+        }
+    }, 1000);
+}
+
+function ejecutarRedireccion() {
+    const especialidad = document.getElementById('specialty-input').value;
+    const ciudadInput = document.getElementById('city-input').value.trim();
+
+    const ciudadFormateada = ciudadInput.toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/ /g, "-");
+
+    const urlDestino = `https://www.doctoralia.com.mx/${especialidad}/${ciudadFormateada}`;
+
+    window.open(urlDestino, '_blank');
+}
+
+function cancelarRedireccion() {
+    if (timerInterval) clearInterval(timerInterval);
+    document.getElementById('redirect-modal').style.display = 'none';
+}

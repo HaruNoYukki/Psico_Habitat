@@ -1,0 +1,173 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psico Hábitat | Bienestar y Conexión</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style/base.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><i class="fas fa-leaf"></i> Psico Hábitat</div>
+            <div class="tagline">Tu espacio de calma y conexión</div>
+        </header>
+        <div class="containier">
+            <h1>
+                ¿Quienes somos?
+            </h1>
+            <br>
+            <p>Somos...</p>
+
+        </div>
+        <div id="home-section" class="section active">
+            <h2>¿Cómo te sientes hoy?</h2>
+            <p>Selecciona lo que más resuena contigo ahora mismo.</p>
+
+            <div class="mood-grid">
+                <div class="mood-card" onclick="filtrarRecursos('tristeza')">
+                    <i class="fas fa-cloud-rain"></i>
+                    <span>Estoy triste</span>
+                </div>
+                <div class="mood-card" onclick="filtrarRecursos('ansiedad')">
+                    <i class="fas fa-wind"></i>
+                    <span>Ansiedad</span>
+                </div>
+                <div class="mood-card" onclick="filtrarRecursos('soledad')">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Me siento solo</span>
+                </div>
+                <div class="mood-card" onclick="filtrarRecursos('panico')">
+                    <i class="fas fa-heartbeat" style="color: var(--alert-soft)"></i>
+                    <span>Crisis Pánico</span>
+                </div>
+            </div>
+            <!-- NUEVO: SECCIÓN DE IA GEMINI -->
+            <div class="ai-companion-box">
+                <div class="ai-title"><i class="fas fa-magic"></i> ¿Prefieres contármelo?</div>
+                <textarea id="ai-mood-input" class="ai-input"
+                    placeholder="Escribe aquí cómo te sientes... (Ej: 'Tengo miedo del futuro y no puedo dormir')"></textarea>
+                <button class="btn-ai" onclick="consultarIA()">
+                    ✨ Recibir Consejo Personalizado
+                </button>
+                <div id="ai-response-container" class="ai-result"></div>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <p>¿Buscas atención profesional especializada?</p>
+                <button class="btn-action" style="background: var(--soft-blue); margin-top: 10px;"
+                    onclick="irA('premium-section')">
+                    Ver Directorio de Psicólogos
+                </button>
+            </div>
+        </div>
+
+        <!-- === SECCIÓN 2: RECURSOS === -->
+        <div id="resources-section" class="section">
+            <button class="btn-back" onclick="irA('home-section')">
+                <i class="fas fa-arrow-left"></i> Volver
+            </button>
+
+            <h2 id="result-title">Recursos para ti</h2>
+
+            <div id="resources-list"></div>
+
+            <!-- EL CIERRE VERDE MEJORADO CON IA -->
+            <div class="green-closure">
+                <h3><i class="fas fa-globe-americas"></i> Tu Acción del Día</h3>
+                <p>Si este espacio te brindó un respiro, ayúdanos a cuidar nuestro hábitat común.</p>
+
+                <span id="green-mission-text" class="mission-text">"Recoge una lata o plástico hoy y tíralo en su
+                    lugar."</span>
+
+                <!-- Botón para generar nueva misión con IA -->
+                <button class="btn-magic-mission" onclick="generarMisionIA()">
+                    ✨ Generar nueva misión mágica
+                </button>
+
+                <p style="font-size: 0.8rem; margin-top: 5px;">Pequeñas acciones sanan tu mente y el planeta.</p>
+
+                <div class="reaction-bar">
+                    <button class="reaction-btn" title="Me comprometo">❤️</button>
+                    <button class="reaction-btn" title="Hecho">✅</button>
+                    <button class="reaction-btn" title="Inspirador">🌱</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- === SECCIÓN 3: PREMIUM === -->
+        <div id="premium-section" class="section">
+            <button class="btn-back" onclick="irA('home-section')">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+
+            <h2>Directorio de Especialistas</h2>
+            <p style="text-align:center; font-size:0.9rem; margin-bottom:20px; color:#666">
+                Conectamos directamente con la base de datos de <strong>Doctoralia</strong> para mostrarte especialistas
+                certificados.
+            </p>
+
+            <div class="external-search-box">
+                <div class="search-input-group">
+                    <label for="specialty-input">¿Qué especialista buscas?</label>
+                    <select id="specialty-input">
+                        <option value="psicologo">Psicólogo</option>
+                        <option value="psiquiatra">Psiquiatra</option>
+                        <option value="psicoterapeuta">Psicoterapeuta</option>
+                        <option value="terapeuta-complementario">Terapeuta Complementario</option>
+                    </select>
+                </div>
+
+                <div class="search-input-group">
+                    <label for="city-input">¿En qué ciudad?</label>
+                    <input type="text" id="city-input" placeholder="Ej: Ciudad de México, Guadalajara..." />
+                </div>
+
+                <button onclick="prepararRedireccion()" class="btn-search-external">
+                    <i class="fas fa-search"></i> Buscar Profesionales
+                </button>
+            </div>
+        </div>
+
+        <div class="nav-bottom">
+            <a href="#" onclick="irA('home-section')" class="nav-link">Inicio</a>
+            <a href="#" onclick="irA('premium-section')" class="nav-link">Profesionales</a>
+            <a href="#" class="nav-link">Nosotros</a>
+        </div>
+    </div>
+
+    <!-- === MODAL DE REDIRECCIÓN (OCULTO) === -->
+    <div id="redirect-modal" class="modal-overlay">
+        <div class="modal-content">
+            <i class="fas fa-hand-holding-heart modal-icon"></i>
+            <h3>Un momento, por favor...</h3>
+
+            <p style="margin-top: 15px; font-size: 1rem; color: #555;">
+                Si deseas apoyar a esta web, recuerda nuestra misión ecológica:
+            </p>
+            <p style="margin-top: 10px; font-weight: bold; color: #3a5a40; font-size: 1.1rem;">
+                "¡Ayúdanos recogiendo una lata o basura en tu camino hoy!"
+            </p>
+
+            <div class="countdown-circle" id="countdown-timer">5</div>
+
+            <p style="font-size: 0.8rem; color: #999;">
+                Te estamos redirigiendo a Doctoralia...
+            </p>
+
+            <!-- Botón para cancelar por si el usuario se arrepiente -->
+            <button onclick="cancelarRedireccion()"
+                style="margin-top: 15px; border: none; background: none; text-decoration: underline; color: #777; cursor: pointer;">
+                Cancelar
+            </button>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="./js/script"></script>
+</html>
