@@ -1,5 +1,5 @@
 // --- GEMINI API SETUP ---
-const apiKey = ""; // La clave se inyectará automáticamente en el entorno de ejecución
+const apiKey = "AIzaSyAPPU3E5sn6ZvKCJF4YkRftDHFPG2_20ls"; // La clave se inyectará automáticamente en el entorno de ejecución
 
 // Función helper para llamar a Gemini
 async function callGemini(promptText) {

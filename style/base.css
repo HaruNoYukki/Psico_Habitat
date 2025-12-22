@@ -1,17 +1,19 @@
 /* --- 1. VARIABLES DE COLOR (Psicología del Color) --- */
 :root {
-    --primary-mint: #95d5b2;
+    --primary-mint: #8de3b4;
     /* Calma, naturaleza */
+    --white-soft: #f8f9fa;
+    /* Texto para los fondos azules*/
     --soft-blue: #a2d2ff;
-    /* Serenidad */
+    /* Texto de botones */
+
     --earth-sand: #faedcd;
     /* Calidez */
     --earth-dark: #d4a373;
     /* Acento tierra */
-    --text-dark: #2f3e46;
+    --text-dark: #454141;
     /* Texto legible pero suave */
-    --white-soft: #f8f9fa;
-    /* Fondo limpio */
+
     --alert-soft: #ffb4a2;
     /* Para crisis, no agresivo */
     --gemini-purple: #8e44ad;
@@ -46,13 +48,28 @@
 h1{
     font: fredoka;
     text-align: center;
+    color: var(--primary-mint);
 }
 
 p{
     font: nunito;
     text-align: center;
     margin-bottom: 25px;
-    color: #666;
+    color: var(--white-soft);
+}
+
+.us{
+    background: rgba(66, 116, 170, 0.5);
+    border: 2px solid var(--white-soft);
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+}
+
+.parrafah{
+    text-align: justify;
 }
 
 span{
@@ -60,8 +77,13 @@ span{
 }
 
 body {
-    background-color: var(--white-soft);
-    color: var(--text-dark);
+    background-image: url("../img/fondo.jpg");
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position: top;
+    background-size: cover;
+
+    color: var(--white-soft);
     line-height: 1.6;
     padding-bottom: 80px;
     /* Espacio para el footer fijo si fuera necesario */
@@ -83,12 +105,12 @@ header {
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 2px solid var(--earth-sand);
+    border-bottom: 2px solid var(--white-soft);
 }
 
 .logo {
     font-size: 1.8rem;
-    color: var(--text-dark);
+    color: var(--primary-mint);
     font-weight: bold;
 }
 
@@ -98,7 +120,7 @@ header {
 
 .tagline {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--white-soft);
     margin-top: 5px;
 }
 
@@ -129,7 +151,7 @@ header {
 h2 {
     font-size: 1.4rem;
     margin-bottom: 20px;
-    color: var(--earth-dark);
+    color: var(--primary-mint);
     text-align: center;
 }
 
@@ -141,8 +163,8 @@ h2 {
 }
 
 .mood-card {
-    background: white;
-    border: 2px solid var(--earth-sand);
+    background: rgba(66, 116, 170, 0.5);
+    border: 2px solid var(--white-soft);
     border-radius: 15px;
     padding: 20px;
     text-align: center;
@@ -154,13 +176,13 @@ h2 {
 .mood-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary-mint);
-    background-color: #f0fff4;
+    background-color: transparent;
 }
 
 .mood-card i {
     font-size: 2rem;
     margin-bottom: 10px;
-    color: var(--earth-dark);
+    color: var(--primary-mint);
 }
 
 .mood-card span {
@@ -171,11 +193,12 @@ h2 {
 /* --- NUEVO: COMPONENTE IA (CHAT) --- */
 .ai-companion-box {
     margin-top: 30px;
-    background: white;
+    background: rgba(255, 255, 255, 0.5);
     padding: 20px;
     border-radius: 15px;
     border: 2px solid var(--soft-blue);
     box-shadow: 0 4px 10px rgba(162, 210, 255, 0.2);
+
 }
 
 .ai-title {
@@ -227,7 +250,7 @@ h2 {
 
 /* --- 7. LISTA DE RECURSOS --- */
 .resource-card {
-    background: white;
+    background: rgba(66, 116, 170, 0.5);
     border-left: 5px solid var(--primary-mint);
     padding: 15px;
     margin-bottom: 15px;
@@ -251,7 +274,7 @@ h2 {
 .resource-type {
     font-size: 0.7rem;
     text-transform: uppercase;
-    background: var(--earth-sand);
+    background: #8de3b469;
     padding: 2px 6px;
     border-radius: 4px;
 }
@@ -274,13 +297,17 @@ h2 {
 .btn-back {
     background: transparent;
     border: none;
-    color: #666;
+    color: var(--white-soft);
     margin-bottom: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 5px;
     font-size: 1rem;
+}
+
+.btn-back:hover{
+    color: var(--primary-mint);
 }
 
 /* --- 8. DIRECTORIO PREMIUM (Buscador Externo) --- */
@@ -470,7 +497,7 @@ h2 {
 }
 
 .nav-link {
-    color: #888;
+    color: #FF9F1C;
     text-decoration: none;
     font-size: 0.9rem;
     padding: 10px;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psico Hábitat | Bienestar y Conexión</title>
+    <title>Psicohábitat | Bienestar y Conexión</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/base.css">
     <style>
@@ -14,21 +14,34 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo"><i class="fas fa-leaf"></i> Psico Hábitat</div>
+            <div class="logo"><i class="fas fa-leaf"></i> Psicohábitat</div>
             <div class="tagline">Tu espacio de calma y conexión</div>
         </header>
-        <div class="containier">
+        <div class="us">
             <h1>
                 ¿Quienes somos?
             </h1>
             <br>
-            <p>Somos...</p>
+            <p class="parrafah">Somos Andrea y Sergio, y como jóvenes comprometidos con el presente, entendemos que nuestro bienestar
+                emocional está profundamente conectado con la salud del mundo que habitamos. En Psico Hábitat, creemos
+                firmemente que para sanar por dentro, también debemos cuidar lo que nos rodea.
+                <br>    
+                <br> 
+                Nuestra misión es facilitarte el acceso a herramientas psicológicas y recursos de apoyo en los momentos
+                que más lo necesitas. Queremos recordarte que cada pequeño paso que das hacia tu equilibrio personal es
+                también un paso hacia un planeta más sano.
+                <br>
+                <br>
+                Cuidamos de ti, para que tú puedas cuidar del hábitat. 
+                Andrea y Sergio: Creadores de Psico Hábitat
+            </p>
 
         </div>
         <div id="home-section" class="section active">
-            <h2>¿Cómo te sientes hoy?</h2>
-            <p>Selecciona lo que más resuena contigo ahora mismo.</p>
-
+            <div class="us">
+                <h1>¿Cómo te sientes hoy?</h1>
+            </div>
+            
             <div class="mood-grid">
                 <div class="mood-card" onclick="filtrarRecursos('tristeza')">
                     <i class="fas fa-cloud-rain"></i>
@@ -60,8 +73,7 @@
 
             <div style="margin-top: 40px; text-align: center;">
                 <p>¿Buscas atención profesional especializada?</p>
-                <button class="btn-action" style="background: var(--soft-blue); margin-top: 10px;"
-                    onclick="irA('premium-section')">
+                <button class="btn-action" onclick="irA('premium-section')">
                     Ver Directorio de Psicólogos
                 </button>
             </div>
@@ -107,7 +119,7 @@
             </button>
 
             <h2>Directorio de Especialistas</h2>
-            <p style="text-align:center; font-size:0.9rem; margin-bottom:20px; color:#666">
+            <p>
                 Conectamos directamente con la base de datos de <strong>Doctoralia</strong> para mostrarte especialistas
                 certificados.
             </p>
@@ -170,4 +182,5 @@
     </div>
 </body>
 <script src="./js/script"></script>
+
 </html>
