@@ -238,7 +238,7 @@ h2 {
 .ai-result {
     margin-top: 15px;
     padding: 15px;
-    background-color: #f8f0fc;
+    background-color: transparent;
     border-radius: 8px;
     border-left: 4px solid var(--gemini-purple);
     font-size: 0.9rem;
