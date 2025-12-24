@@ -198,7 +198,7 @@ function ejecutarRedireccion() {
 
     const urlDestino = `https://www.doctoralia.com.mx/${especialidad}/${ciudadFormateada}`;
 
-    window.open(urlDestino, '_blank');
+    window.open(urlDestino, '_self');
 }
 
 function cancelarRedireccion() {
