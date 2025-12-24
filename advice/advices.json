@@ -1,0 +1,113 @@
+{
+    "conflictos-familiares": [
+        {
+            "id": 1,
+            "advice": "No todas las discusiones valen la pena. Si cedes en cosas pequeñas (como arreglar tu cuarto), tendrás más \"puntos\" para negociar las cosas grandes (como salir el fin de semana)."
+        },
+        {
+            "id": 2,
+            "advice": "Nunca intentes resolver un conflicto cuando ambos están gritando. Di: \"Ahora estoy enojado y no quiero decir algo malo, hablemos más tarde\". Esto demuestra una madurez que suele dejarlos sin palabras."
+        },
+        {
+            "id": 3,
+            "advice": "Compartir una actividad pequeña que no requiera hablar mucho (ver una serie, cocinar algo, pasear al perro)."
+        }
+    ],
+    "dificultades-academicas": [
+        {
+            "id": 1,
+            "advice": "Repítete: \"Mi calificación es el resultado de un examen, no es mi valor como persona\". Una nota mide rendimiento, no inteligencia total ni futuro éxito."
+        },
+        {
+            "id": 2,
+            "advice": "Pregúntate si es falta de estudio, falta de interés o si el método de enseñanza no te sirve. A veces, un video de YouTube o una explicación diferente pueden hacer la diferencia."
+        },
+        {
+            "id": 3,
+            "advice": "No esperes al examen final. Pide a un compañero que sí entiende que te explique 15 minutos. A veces entre amigos se entiende mejor el lenguaje."
+        }
+    ],
+    "rechazo-social": [
+        {
+            "id": 1,
+            "advice": "Recuerda que no puedes agradar a todo el mundo. Enfócate en las personas que te valoran por quien eres."
+        },
+        {
+            "id": 2,
+            "advice": "Practica la autocompasión. Habla contigo mismo como lo harías con un buen amigo que está pasando por un momento difícil."
+        },
+        {
+            "id": 3,
+            "advice": "Involúcrate en actividades o grupos que compartan tus intereses. Esto puede ayudarte a encontrar personas con las que conectes de manera más auténtica."
+        }
+    ],
+    "falta-autoestima": [
+        {
+            "id": 1,
+            "advice": "Haz una lista de tus logros y cualidades positivas. Léela cuando te sientas inseguro."
+        },
+        {
+            "id": 2,
+            "advice": "Evita compararte con los demás. Cada persona tiene su propio camino y ritmo."
+        },
+        {
+            "id": 3,
+            "advice": "Practica el autocuidado. Dedica tiempo a actividades que disfrutes y que te hagan sentir bien contigo mismo."
+        }
+    ],
+    "visto-falta-de-mensajes": [
+        {
+            "id": 1,
+            "advice": "Recuerda que la comunicación es una calle de dos vías. Si no recibes respuestas, puede ser útil evaluar si estás comunicándote de manera efectiva."
+        },
+        {
+            "id": 2,
+            "advice": "No tomes la falta de respuesta como algo personal. Las personas pueden estar ocupadas o distraídas."
+        },
+        {
+            "id": 3,
+            "advice": "Considera diversificar tus métodos de comunicación. A veces, un mensaje de texto puede no ser tan efectivo como una llamada o una conversación cara a cara."
+        }
+    ],
+    "situaciones-en-la-escuela":[
+        {
+            "id": 1,
+            "advice": "Si te sientes incómodo en la escuela, busca un lugar tranquilo donde puedas relajarte y recargar energías."
+        },
+        {
+            "id": 2,
+            "advice": "Habla con un consejero escolar o un adulto de confianza sobre tus sentimientos. Ellos pueden ofrecerte apoyo y orientación."
+        },
+        {
+            "id": 3,
+            "advice": "Participa en actividades extracurriculares que te interesen. Esto puede ayudarte a hacer nuevos amigos y sentirte más conectado con la comunidad escolar."
+        }
+    ],
+    "exclusion-redes-sociales": [
+        {
+            "id": 1,
+            "advice": "Recuerda que las redes sociales no reflejan la realidad completa. No te compares con las versiones idealizadas que otros muestran en línea."
+        },
+        {
+            "id": 2,
+            "advice": "Si te sientes excluido, considera hablar directamente con las personas involucradas para expresar cómo te sientes."
+        },
+        {
+            "id": 3,
+            "advice": "Enfócate en construir relaciones auténticas fuera de las redes sociales. Las conexiones cara a cara suelen ser más significativas."
+        }
+    ],
+    "sentirse-el-raro": [
+        {
+            "id": 1,
+            "advice": "Recuerda que todos somos únicos y diferentes. Lo que te hace sentir raro puede ser lo que te hace especial."
+        },
+        {            "id": 2,
+            "advice": "Busca personas que compartan tus intereses y valores. Encontrar una comunidad donde te sientas aceptado puede hacer una gran diferencia."
+        },
+        {
+            "id": 3,
+            "advice": "Practica la autoaceptación. Aceptarte a ti mismo tal como eres es un paso importante para sentirte cómodo en tu propia piel."
+        }
+    ]
+}

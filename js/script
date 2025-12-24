@@ -1,10 +1,18 @@
 // --- GEMINI API SETUP ---
-const apiKey = "AIzaSyAPPU3E5sn6ZvKCJF4YkRftDHFPG2_20ls"; // La clave se inyectará automáticamente en el entorno de ejecución
+const GEMINI_API_KEY="";
+
+var animo = '';
+
+let advices = null;
+
+let advice = null;
+
+var adviceController = false;
 
 // Función helper para llamar a Gemini
 async function callGemini(promptText) {
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -100,13 +108,16 @@ const bdRecursos = [
 
 // --- 2. NAVEGACIÓN ---
 function irA(sectionId) {
+    console.log("Navegando a sección:", sectionId);
     document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
+    console.log("Sección activada:", sectionId);
     window.scrollTo(0, 0);
 }
 
 // --- 3. RECURSOS ---
-function filtrarRecursos(estadoAnimo) {
+function filtrarRecursos() {
+    var estadoAnimo = animo;
     const contenedor = document.getElementById('resources-list');
     const titulo = document.getElementById('result-title');
     contenedor.innerHTML = '';
@@ -131,11 +142,15 @@ function filtrarRecursos(estadoAnimo) {
                             <span class="resource-type">${item.tipo}</span>
                             <h3>${item.titulo}</h3>
                         </div>
-                        <a href="${item.link}" class="btn-action">Ver</a>
+                        <a href="${item.link}"no class="btn-action">Ver</a>
                     </div>
                 `;
             contenedor.innerHTML += card;
         });
+    }
+    if (adviceController) {
+        adviceConstructor();//editar esta madre no va a jalar así
+        irA('resources-section');
     }
     irA('resources-section');
 }
@@ -190,3 +205,87 @@ function cancelarRedireccion() {
     if (timerInterval) clearInterval(timerInterval);
     document.getElementById('redirect-modal').style.display = 'none';
 }
+
+// --- 5. ENCUESTA PREVIA A RECURSOS ---
+function mostrarEncuesta(estadoAnimo) {
+    animo = estadoAnimo;
+    adviceController = false;
+    irA('survey-section');
+}
+
+function seleccionarRazon(razon) {
+    let data = advices[razon];
+    advice = data;
+    adviceController = true;
+    filtrarRecursos();
+}
+
+function adviceConstructor() {
+    //insertando el contenedopr de consejos como hijo
+    const contenedor = document.getElementById('resources-list');
+    const contenedorConsejos = document.createElement('div');
+    contenedor.appendChild(contenedorConsejos);
+    //lógica de consejos
+    let pasoActual = 0;
+    function renderAdvice() {
+        const item = advice[pasoActual]['advice'];
+        const esElPrimero = pasoActual === 0;
+        const esElUltimo = pasoActual === advice.length - 1;
+
+        const htmlTemplate = `
+            <div class="us">
+                <h2>Consejo Personalizado</h2>
+                <p>${item}</p>
+                <div class="btn-survey-grid">
+                    <button id="btn-prev" class="btn-action" "btn-next" ${esElPrimero ? 'disabled' : ''}>
+                        Anterior
+                    </button>
+                    <button id="btn-next" class="btn-action">
+                        ${esElUltimo ? 'Inicio' : 'Siguiente →'}
+                    </button>
+                </div>
+            </div>
+            `;
+        //insertando el template en el contenedor
+        contenedorConsejos.innerHTML = htmlTemplate;
+
+        document.getElementById('btn-prev').onclick = () => {
+            if (pasoActual > 0) {
+                pasoActual--;
+                renderAdvice();
+            }
+
+        }
+        document.getElementById('btn-next').onclick = () => {
+            if (pasoActual < advice.length - 1) {
+                pasoActual++;
+                renderAdvice();
+            } else {
+                pasoActual = 0;
+                renderAdvice();
+            }
+        }
+    }
+    renderAdvice();
+}
+
+// --- 6. ACCESO DIRECTO A RECURSOS DESDE CRISIS ---
+function accesoDirectoRecursos() {
+    filtrarRecursos();
+}
+function accesosCrisis() {
+    animo = 'panico';
+    adviceController = false;
+    filtrarRecursos();
+}
+
+// --- 7. CARGA DE CONSEJOS DESDE JSON ---
+async function advicesData() {
+    try {
+        const data = await fetch('../advice/advices.json');
+        advices = await data.json();
+    } catch (error) {
+        console.error("Error cargando datos de consejos:", error);
+    }
+}
+advicesData();

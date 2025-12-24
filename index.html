@@ -17,45 +17,50 @@
             <div class="logo"><i class="fas fa-leaf"></i> Psicohábitat</div>
             <div class="tagline">Tu espacio de calma y conexión</div>
         </header>
-        <div class="us">
-            <h1>
-                ¿Quienes somos?
-            </h1>
-            <br>
-            <p class="parrafah">Somos Andrea y Sergio, y como jóvenes comprometidos con el presente, entendemos que nuestro bienestar
-                emocional está profundamente conectado con la salud del mundo que habitamos. En Psico Hábitat, creemos
-                firmemente que para sanar por dentro, también debemos cuidar lo que nos rodea.
-                <br>    
-                <br> 
-                Nuestra misión es facilitarte el acceso a herramientas psicológicas y recursos de apoyo en los momentos
-                que más lo necesitas. Queremos recordarte que cada pequeño paso que das hacia tu equilibrio personal es
-                también un paso hacia un planeta más sano.
-                <br>
-                <br>
-                Cuidamos de ti, para que tú puedas cuidar del hábitat. 
-                Andrea y Sergio: Creadores de Psico Hábitat
-            </p>
 
-        </div>
+        <!-- === SECCIÓN 1: INICIO === -->
         <div id="home-section" class="section active">
+            <div class="us">
+                <h1>
+                    ¿Quienes somos?
+                </h1>
+                <br>
+                <p class="parrafah">Somos Andrea y Sergio, y como jóvenes comprometidos con el presente, entendemos que
+                    nuestro bienestar
+                    emocional está profundamente conectado con la salud del mundo que habitamos. En Psico Hábitat,
+                    creemos
+                    firmemente que para sanar por dentro, también debemos cuidar lo que nos rodea.
+                    <br>
+                    <br>
+                    Nuestra misión es facilitarte el acceso a herramientas psicológicas y recursos de apoyo en los
+                    momentos
+                    que más lo necesitas. Queremos recordarte que cada pequeño paso que das hacia tu equilibrio personal
+                    es
+                    también un paso hacia un planeta más sano.
+                    <br>
+                    <br>
+                    Cuidamos de ti, para que tú puedas cuidar del hábitat.
+                    Andrea y Sergio: Creadores de Psico Hábitat
+                </p>
+            </div>
             <div class="us">
                 <h1>¿Cómo te sientes hoy?</h1>
             </div>
-            
+
             <div class="mood-grid">
-                <div class="mood-card" onclick="filtrarRecursos('tristeza')">
+                <div class="mood-card" onclick="mostrarEncuesta('tristeza')">
                     <i class="fas fa-cloud-rain"></i>
                     <span>Estoy triste</span>
                 </div>
-                <div class="mood-card" onclick="filtrarRecursos('ansiedad')">
+                <div class="mood-card" onclick="mostrarEncuesta('ansiedad')">
                     <i class="fas fa-wind"></i>
                     <span>Ansiedad</span>
                 </div>
-                <div class="mood-card" onclick="filtrarRecursos('soledad')">
+                <div class="mood-card" onclick="mostrarEncuesta('soledad')">
                     <i class="fas fa-user-friends"></i>
                     <span>Me siento solo</span>
                 </div>
-                <div class="mood-card" onclick="filtrarRecursos('panico')">
+                <div class="mood-card" onclick="accesosCrisis()">
                     <i class="fas fa-heartbeat" style="color: var(--alert-soft)"></i>
                     <span>Crisis Pánico</span>
                 </div>
@@ -70,10 +75,9 @@
                 </button>
                 <div id="ai-response-container" class="ai-result"></div>
             </div>
-
             <div style="margin-top: 40px; text-align: center;">
                 <p>¿Buscas atención profesional especializada?</p>
-                <button class="btn-action" onclick="irA('premium-section')">
+                <button class="btn-action" onclick="irA('premium-section')" style="margin-bottom: 20px;">
                     Ver Directorio de Psicólogos
                 </button>
             </div>
@@ -92,7 +96,7 @@
             <!-- EL CIERRE VERDE MEJORADO CON IA -->
             <div class="green-closure">
                 <h3><i class="fas fa-globe-americas"></i> Tu Acción del Día</h3>
-                <p>Si este espacio te brindó un respiro, ayúdanos a cuidar nuestro hábitat común.</p>
+                <p style="color:var(--text-dark)">Si este espacio te brindó un respiro, ayúdanos a cuidar nuestro hábitat común.</p>
 
                 <span id="green-mission-text" class="mission-text">"Recoge una lata o plástico hoy y tíralo en su
                     lugar."</span>
@@ -102,7 +106,7 @@
                     ✨ Generar nueva misión mágica
                 </button>
 
-                <p style="font-size: 0.8rem; margin-top: 5px;">Pequeñas acciones sanan tu mente y el planeta.</p>
+                <p style="color:var(--text-dark)">Pequeñas acciones sanan tu mente y el planeta.</p>
 
                 <div class="reaction-bar">
                     <button class="reaction-btn" title="Me comprometo">❤️</button>
@@ -112,7 +116,78 @@
             </div>
         </div>
 
-        <!-- === SECCIÓN 3: PREMIUM === -->
+        <!-- === SECCIÓN 3: ENCUESTA === -->
+        <div id="survey-section" class="section">
+
+            <div class="btn-survey-grid">
+                <button class="btn-back" onclick="irA('home-section')">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
+                <button class="btn-skip-survey" onclick="accesoDirectoRecursos()">
+                    Ir directo a los recursos <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="us">
+                <h1>¿Por que te sientes así?</h1>
+                <br>
+            </div>
+
+            <div class="mood-grid">
+                <div class="mood-card" onclick="seleccionarRazon('conflictos-familiares')">
+                    <i class="fas fa-home"></i>
+                    <span>Conflictos Familiares</span>
+                </div>
+
+                <div class="mood-card" onclick="seleccionarRazon('dificultades-academicas')">
+                    <i class="fas fa-book"></i>
+                    <span>Dificultades Académicas</span>
+                </div>
+
+                <div class="mood-card" onclick="seleccionarRazon('rechazo-social')">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Rechazo social</span>
+                </div>
+
+                <div class="mood-card" onclick="seleccionarRazon('falta-autoestima')">
+                    <i class="fas fa-notes-medical"></i>
+                    <span>Falta de autoestima</span>
+                </div>
+
+                <div class="mood-card" onclick="seleccionarRazon('visto-falta-de-mensajes')">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Visto/Falta de mensajes</span>
+                </div>
+
+                <div class="mood-card" onclick="seleccionarRazon('situaciones-en-la-escuela')">
+                    <i class="fas fa-school"></i>
+                    <span> Situaciones en la escuela</span>
+                </div>
+
+                <div class="mood-card" onclick="seleccionarRazon('exclusion-redes-sociales')">
+                    <i class="fas fa-users"></i>
+                    <span>Exclusión en redes sociales</span>
+                </div>
+
+                <div class="mood-card" onclick="seleccionarRazon('sentirse-el-raro')">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>Sentirse el "raro" o diferente</span>
+                </div>
+            </div>
+
+            <div class="ai-companion-box">
+                <div class="ai-title"><i class="fas fa-magic"></i> ¿Prefieres contármelo?</div>
+                <textarea id="ai-mood-input" class="ai-input"
+                    placeholder="Escribe aquí cómo te sientes... (Ej: 'Tengo miedo del futuro y no puedo dormir')"></textarea>
+                <button class="btn-ai" onclick="consultarIA()">
+                    ✨ Recibir Consejo Personalizado
+                </button>
+                <div id="ai-response-container" class="ai-result"></div>
+            </div>
+
+        </div>
+
+        <!-- === SECCIÓN 4: PREMIUM === -->
         <div id="premium-section" class="section">
             <button class="btn-back" onclick="irA('home-section')">
                 <i class="fas fa-arrow-left"></i> Volver al Inicio
@@ -120,7 +195,8 @@
 
             <h2>Directorio de Especialistas</h2>
             <p>
-                Conectamos directamente con la base de datos de <strong>Doctoralia</strong> para mostrarte especialistas
+                Conectamos directamente con la base de datos de <strong>Doctoralia</strong> para mostrarte
+                especialistas
                 certificados.
             </p>
 
@@ -149,8 +225,9 @@
         <div class="nav-bottom">
             <a href="#" onclick="irA('home-section')" class="nav-link">Inicio</a>
             <a href="#" onclick="irA('premium-section')" class="nav-link">Profesionales</a>
-            <a href="#" class="nav-link">Nosotros</a>
+            <!--<a href="#" class="nav-link">Nosotros</a> -->
         </div>
+
     </div>
 
     <!-- === MODAL DE REDIRECCIÓN (OCULTO) === -->
@@ -182,5 +259,6 @@
     </div>
 </body>
 <script src="./js/script"></script>
+<script type="module" src=""./js/config.js"></script>
 
 </html>
