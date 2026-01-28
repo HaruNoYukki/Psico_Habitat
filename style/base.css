@@ -65,7 +65,8 @@ p{
     padding: 20px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .parrafah{
@@ -198,6 +199,7 @@ h2 {
     border-radius: 15px;
     border: 2px solid var(--soft-blue);
     box-shadow: 0 4px 10px rgba(162, 210, 255, 0.2);
+    margin-bottom: 30px;
 
 }
 

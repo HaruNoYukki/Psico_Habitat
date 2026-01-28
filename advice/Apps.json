@@ -1,0 +1,40 @@
+{
+    "Ansiedad":{
+           "Rootd":{
+                "descripcion":"App de meditación y ejercicios de respiración para reducir la ansiedad.",
+                "linkA":"https://play.google.com/store/apps/details?id=com.rootd",
+                "linkI":"https://apps.apple.com/ca/app/rootd-panic-attacks-anxiety/id1289018369",
+                "linkW":"https://www.rootd.io/"
+            }
+        },
+    "Panico":{
+            "Rootd":{
+                "descripcion":"App de meditación y ejercicios de respiración para reducir la ansiedad.",
+                "linkA":"https://play.google.com/store/apps/details?id=com.rootd",
+                "linkI":"https://apps.apple.com/ca/app/rootd-panic-attacks-anxiety/id1289018369",
+                "linkW":"https://www.rootd.io/"
+            }
+        },
+    "Soledad":{
+            "Yana":{
+                "descripcion":"App de chatbot que ofrece apoyo emocional y compañía.",
+                "linkA":"https://play.google.com/store/apps/details?id=com.yanaapp&hl=es_MX",
+                "linkI":"https://apps.apple.com/mx/app/yana-diario-emocional/id1512301453",
+                "linkW":"https://www.yana.ai/es/home"
+            },
+            "Discord":{
+                "descripcion":"Plataforma de chat y comunidad donde puedes encontrar grupos de apoyo.",
+                "linkA":"https://play.google.com/store/apps/details?id=com.discord&hl=es_MX",
+                "linkI":"https://apps.apple.com/mx/app/discord-chat-for-gamers/id985746746",
+                "linkW":"https://discord.com/"
+            }
+        },
+    "Tristeza":{
+            "Iam":{
+                "descripcion":"App para mejorar la autoestima y el bienestar emocional.",
+                "linkA":"https://play.google.com/store/apps/details?id=com.hrd.iam",
+                "linkI":"https://apps.apple.com/us/app/i-am-daily-affirmations/id874656917",
+                "linkW":"https://www.iam-app.com/"
+            }
+        }
+}

@@ -7,7 +7,10 @@ let advices = null;
 
 let advice = null;
 
+let apps = null;
+
 var adviceController = false;
+
 
 // Función helper para llamar a Gemini
 async function callGemini(promptText) {
@@ -96,14 +99,21 @@ async function generarMisionIA() {
 }
 
 // --- 1. BASE DE DATOS LOCAL ---
-const bdRecursos = [
-    { id: 1, tag: 'ansiedad', titulo: 'Respiración Guiada 4-7-8', tipo: 'Ejercicio', link: '#' },
-    { id: 2, tag: 'ansiedad', titulo: 'App Calm (Versión Gratuita)', tipo: 'App', link: '#' },
-    { id: 3, tag: 'tristeza', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
-    { id: 4, tag: 'tristeza', titulo: 'Playlist: Música Suave', tipo: 'Web', link: '#' },
-    { id: 5, tag: 'soledad', titulo: 'Comunidad Discord "Apoyo Mutuo"', tipo: 'Chat', link: '#' },
-    { id: 6, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
-    { id: 7, tag: 'panico', titulo: 'Guía visual: Grounding', tipo: 'Lectura', link: '#' },
+var bdRecursos = [
+    { id: 1, tag: 'ansiedad', titulo: 'Playlist: Calma tu ansiedad', tipo: 'Web', link: 'https://open.spotify.com/playlist/6bT8zo10MdHsESTQNPXFW8?si=mqr7BTHLQBG7fPayRbniCw&pi=FOFcWn5zTGqt6' },
+    { id: 2, tag: 'ansiedad', titulo: 'Playlist: Calm your Anxiety', tipo: 'Web', link: 'https://open.spotify.com/playlist/1y5R84CnSLoLcSRb4WCFAB?si=ZqrqfbMzQMSbRvvCUmN0vA&pi=efONrH3PQzGg8'},
+    { id: 3, tag: 'ansiedad', titulo: 'App Rootd', tipo: 'App', link: "#", appCat:"Ansiedad", appName:"Rootd" },
+    { id: 4, tag: 'tristeza', titulo: 'Playlist: Rayito de Sol', tipo: 'Web', link: "https://open.spotify.com/playlist/6Ud5HZrCWAaUrhAS3B1h0D?si=LNG5a0D9Q2KeonyOpTIy9g&pi=Q6D8v6ntRgWkL"},
+    { id: 5, tag: 'tristeza', titulo: 'Playlist: Sunshine State of Mind', tipo: 'Web', link: 'https://open.spotify.com/playlist/5QGFrabx7xXp7RMlMAxXn5?si=xvZnAQ3DQv-zckg-h_nHAA&pi=TWGXySOBRnOyo'},
+    { id: 6, tag: 'tristeza', titulo: 'App I am', tipo: 'App', link: '#', appCat:"Tristeza", appName:"Iam"},
+    { id: 7, tag: 'tristeza', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+    { id: 8, tag: 'soledad', titulo: 'Playlist: Voces Amigas', tipo: 'Web', link: 'https://open.spotify.com/playlist/4ijA8sf4ztxRjzlXEfWhb7?si=HEnHQgQRRT69fYnJ6Rg1gg&pi=icy9Z9pWR_-LH'},
+    { id: 9, tag: 'soledad', titulo: 'Playlist: Company in the Echo', tipo: 'Web', link: 'https://open.spotify.com/playlist/4oFkgJLEcCj23LBpjqncdb?si=qW8WkBxISxeGDrPRWX2OkA&pi=Gb_zArkARdqFh'},
+    //{ id: 6, tag: 'soledad', titulo: 'Comunidad Discord "Apoyo Mutuo"', tipo: 'Chat', link: '#' },
+    { id: 10, tag: 'soledad', titulo: 'App Yana', tipo: 'App', link: "#", appCat:"Soledad", appName:"Yana"},
+    { id: 11, tag: 'soledad', titulo: 'App Discord', tipo: 'App', link:"# ", appCat:"Soledad", appName:"Discord"},
+    { id: 12, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
+    { id: 13, tag: 'panico', titulo: 'App Rootd', tipo: 'App', link: "#", appCat:"Ansiedad", appName:"Rootd" },
 ];
 
 // --- 2. NAVEGACIÓN ---
@@ -130,7 +140,7 @@ function filtrarRecursos() {
     };
     titulo.innerText = textos[estadoAnimo] || 'Recursos para ti';
 
-    const resultados = bdRecursos.filter(r => r.tag === estadoAnimo);
+    const resultados =  bdRecursos.filter(r => r.tag === estadoAnimo);
 
     if (resultados.length === 0) {
         contenedor.innerHTML = '<p>No encontramos recursos específicos.</p>';
@@ -142,14 +152,17 @@ function filtrarRecursos() {
                             <span class="resource-type">${item.tipo}</span>
                             <h3>${item.titulo}</h3>
                         </div>
+                        `
+                        + (item.tipo === 'App' ? `<a href="${detectSO(item.appCat, item.appName)}" class="btn-action">Descargar App</a>`:
+                        `
                         <a href="${item.link}"no class="btn-action">Ver</a>
                     </div>
-                `;
+                `);
             contenedor.innerHTML += card;
         });
     }
     if (adviceController) {
-        adviceConstructor();//editar esta madre no va a jalar así
+        adviceConstructor(animo);
         irA('resources-section');
     }
     irA('resources-section');
@@ -214,7 +227,7 @@ function mostrarEncuesta(estadoAnimo) {
 }
 
 function seleccionarRazon(razon) {
-    let data = advices[razon];
+    let data = advices[animo][razon];
     advice = data;
     adviceController = true;
     filtrarRecursos();
@@ -231,24 +244,27 @@ function adviceConstructor() {
         const item = advice[pasoActual]['advice'];
         const esElPrimero = pasoActual === 0;
         const esElUltimo = pasoActual === advice.length - 1;
+        const adviceLength = advice.length;
 
         const htmlTemplate = `
             <div class="us">
                 <h2>Consejo Personalizado</h2>
                 <p>${item}</p>
-                <div class="btn-survey-grid">
-                    <button id="btn-prev" class="btn-action" "btn-next" ${esElPrimero ? 'disabled' : ''}>
+                ${ adviceLength > 1 ? `<div class="btn-survey-grid">
+                    <button id="btn-prev" class="btn-action" ${esElPrimero ? 'disabled' : ''}>
                         Anterior
                     </button>
                     <button id="btn-next" class="btn-action">
                         ${esElUltimo ? 'Inicio' : 'Siguiente →'}
                     </button>
-                </div>
+                </div>`:''}
             </div>
             `;
         //insertando el template en el contenedor
         contenedorConsejos.innerHTML = htmlTemplate;
-
+        
+        //eventos de los botones
+        if (adviceLength <= 1) return;
         document.getElementById('btn-prev').onclick = () => {
             if (pasoActual > 0) {
                 pasoActual--;
@@ -289,3 +305,40 @@ async function advicesData() {
     }
 }
 advicesData();
+
+// --- 8. CARGA DE APPS DESDE JSON ---
+async function appsData() {
+    try {
+        const data = await fetch('../advice/Apps.json');
+        apps = await data.json();
+    } catch (error) {
+        console.error("Error cargando datos de apps:", error);
+    }
+}
+appsData();
+
+// --- 9. SO DETECTOR ---
+function detectSO(appCat, appName) {
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    console.log("User Agent:", userAgent);
+
+    switch (true) {
+        case /Android/i.test(userAgent):
+            return apps[appCat][appName].linkA;
+        break;
+
+        case /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream:
+            return apps[appCat][appName].linkI;
+        break;
+
+        default:
+            return apps[appCat][appName].linkW;
+        break;
+    }
+}
+
+//-- 10. LLAMADA A NUMEROS DE EMERGENCIA ---
+function llamarTelefono(telefono) {
+    window.location.href = telefono;
+}

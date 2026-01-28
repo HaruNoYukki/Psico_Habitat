@@ -1,113 +1,324 @@
 {
-    "conflictos-familiares": [
-        {
-            "id": 1,
-            "advice": "No todas las discusiones valen la pena. Si cedes en cosas pequeñas (como arreglar tu cuarto), tendrás más \"puntos\" para negociar las cosas grandes (como salir el fin de semana)."
-        },
-        {
-            "id": 2,
-            "advice": "Nunca intentes resolver un conflicto cuando ambos están gritando. Di: \"Ahora estoy enojado y no quiero decir algo malo, hablemos más tarde\". Esto demuestra una madurez que suele dejarlos sin palabras."
-        },
-        {
-            "id": 3,
-            "advice": "Compartir una actividad pequeña que no requiera hablar mucho (ver una serie, cocinar algo, pasear al perro)."
-        }
-    ],
-    "dificultades-academicas": [
-        {
-            "id": 1,
-            "advice": "Repítete: \"Mi calificación es el resultado de un examen, no es mi valor como persona\". Una nota mide rendimiento, no inteligencia total ni futuro éxito."
-        },
-        {
-            "id": 2,
-            "advice": "Pregúntate si es falta de estudio, falta de interés o si el método de enseñanza no te sirve. A veces, un video de YouTube o una explicación diferente pueden hacer la diferencia."
-        },
-        {
-            "id": 3,
-            "advice": "No esperes al examen final. Pide a un compañero que sí entiende que te explique 15 minutos. A veces entre amigos se entiende mejor el lenguaje."
-        }
-    ],
-    "rechazo-social": [
-        {
-            "id": 1,
-            "advice": "Recuerda que no puedes agradar a todo el mundo. Enfócate en las personas que te valoran por quien eres."
-        },
-        {
-            "id": 2,
-            "advice": "Practica la autocompasión. Habla contigo mismo como lo harías con un buen amigo que está pasando por un momento difícil."
-        },
-        {
-            "id": 3,
-            "advice": "Involúcrate en actividades o grupos que compartan tus intereses. Esto puede ayudarte a encontrar personas con las que conectes de manera más auténtica."
-        }
-    ],
-    "falta-autoestima": [
-        {
-            "id": 1,
-            "advice": "Haz una lista de tus logros y cualidades positivas. Léela cuando te sientas inseguro."
-        },
-        {
-            "id": 2,
-            "advice": "Evita compararte con los demás. Cada persona tiene su propio camino y ritmo."
-        },
-        {
-            "id": 3,
-            "advice": "Practica el autocuidado. Dedica tiempo a actividades que disfrutes y que te hagan sentir bien contigo mismo."
-        }
-    ],
-    "visto-falta-de-mensajes": [
-        {
-            "id": 1,
-            "advice": "Recuerda que la comunicación es una calle de dos vías. Si no recibes respuestas, puede ser útil evaluar si estás comunicándote de manera efectiva."
-        },
-        {
-            "id": 2,
-            "advice": "No tomes la falta de respuesta como algo personal. Las personas pueden estar ocupadas o distraídas."
-        },
-        {
-            "id": 3,
-            "advice": "Considera diversificar tus métodos de comunicación. A veces, un mensaje de texto puede no ser tan efectivo como una llamada o una conversación cara a cara."
-        }
-    ],
-    "situaciones-en-la-escuela":[
-        {
-            "id": 1,
-            "advice": "Si te sientes incómodo en la escuela, busca un lugar tranquilo donde puedas relajarte y recargar energías."
-        },
-        {
-            "id": 2,
-            "advice": "Habla con un consejero escolar o un adulto de confianza sobre tus sentimientos. Ellos pueden ofrecerte apoyo y orientación."
-        },
-        {
-            "id": 3,
-            "advice": "Participa en actividades extracurriculares que te interesen. Esto puede ayudarte a hacer nuevos amigos y sentirte más conectado con la comunidad escolar."
-        }
-    ],
-    "exclusion-redes-sociales": [
-        {
-            "id": 1,
-            "advice": "Recuerda que las redes sociales no reflejan la realidad completa. No te compares con las versiones idealizadas que otros muestran en línea."
-        },
-        {
-            "id": 2,
-            "advice": "Si te sientes excluido, considera hablar directamente con las personas involucradas para expresar cómo te sientes."
-        },
-        {
-            "id": 3,
-            "advice": "Enfócate en construir relaciones auténticas fuera de las redes sociales. Las conexiones cara a cara suelen ser más significativas."
-        }
-    ],
-    "sentirse-el-raro": [
-        {
-            "id": 1,
-            "advice": "Recuerda que todos somos únicos y diferentes. Lo que te hace sentir raro puede ser lo que te hace especial."
-        },
-        {            "id": 2,
-            "advice": "Busca personas que compartan tus intereses y valores. Encontrar una comunidad donde te sientas aceptado puede hacer una gran diferencia."
-        },
-        {
-            "id": 3,
-            "advice": "Practica la autoaceptación. Aceptarte a ti mismo tal como eres es un paso importante para sentirte cómodo en tu propia piel."
-        }
-    ]
+    "ansiedad": {
+        "conflictos-familiares": [
+            {
+                "id": 1,
+                "advice": "A veces, la ansiedad es la señal de tu cuerpo diciendo que estás intentando controlar algo que no está bajo tu control (las acciones de tu familia)."
+            },
+            {
+                "id": 2,
+                "advice": "Aceptar que no puedes cambiarlos a ellos, pero sí protegerte tú, es el primer paso para recuperar la paz."
+            }
+        ],
+        "dificultades-academicas": [
+            {
+                "id": 1,
+                "advice": "Organiza tu tiempo en bloques de estudio y descanso. La técnica Pomodoro (25 minutos de estudio, 5 de descanso) puede ayudarte a mantener la concentración."
+            }
+        ],
+        "rechazo-social": [
+            {
+                "id": 1,
+                "advice": "La próxima vez que sientas esa punzada de ansiedad antes de hablar, intenta la Postura de Poder (de Amy Cuddy):"
+            },
+            {
+                "id": 2,
+                "advice": "antes de la interacción, busca un lugar privado (como un baño) y párate derecho, con las manos en la cadera y el pecho abierto por 2 minutos."
+            },
+            {
+                "id": 3,
+                "advice": "Esto ayuda a reducir el cortisol (hormona del estrés) y aumenta la testosterona (hormona de la confianza)."
+            }
+        ],
+        "falta-autoestima": [
+            {
+                "id": 1,
+                "advice": "Separa quién eres de lo que piensas de ti. La ansiedad te hace creer que tus pensamientos son verdades absolutas."
+            },
+            {
+                "id": 2,
+                "advice": "Etiqueta el pensamiento: En lugar de decir \"Soy un fracaso\", di: \"Estoy teniendo el pensamiento de que soy un fracaso\". Esa pequeña distancia le quita poder al juicio y te recuerda que tú eres el observador, no el pensamiento."
+            },
+            {
+                "id": 3,
+                "advice": " Cuestiona al \"Crítico Interno\". Imagina que un amigo te dijera las cosas que tú te dices a ti mismo. ¿Se lo permitirías? Probablemente no."
+            },
+            {
+                "id": 4,
+                "advice": "El estándar del mejor amigo: Cuando te ataque, detente y pregúntate: ¿Le diría esto a alguien que quiero?. Si la respuesta es no, busca una frase más neutral. No tiene que ser falsamente positiva, solo justa. Ejemplo: De \"No sirvo para nada\" a \"Hoy me está costando, pero estoy haciendo lo que puedo.\""
+            }
+        ],
+        "visto-falta-de-mensajes": [
+            {
+                "id": 1,
+                "advice": "Cada vez que revisas el celular para ver si ya respondió, le das a tu cerebro una pequeña dosis de cortisol (estrés)."
+            },
+            {
+                "id": 2,
+                "advice": "Esconde el chat: En WhatsApp, puedes \"archivar\" la conversación para que no aparezca arriba de todo cada vez que abres la app. Si no la ves, la urgencia baja."
+            },
+            {
+                "id": 3,
+                "advice": "Pon el celular en otra habitación: Date periodos de 30 minutos de \"desconexión total\". Si la respuesta llega, llegará igual aunque no la estés mirando."
+            },
+            {
+                "id": 4,
+                "advice": "Desactiva las confirmaciones de lectura: Si te genera mucha angustia, quita el \"visto\" azul (y pide que no te importe si el otro lo tiene). Ojos que no ven, sistema nervioso que no sufre."
+            }
+        ],
+        "situaciones-en-la-escuela": [
+            {
+                "id": 1,
+                "advice": "Ansiedad por el Rendimiento (Exámenes y Notas) Es el miedo a no ser \"suficiente\" o a las consecuencias de un error."
+            },
+            {
+                "id": 2,
+                "advice": "Técnica de la \"Peor Consecuencia\": Pregúntate: ¿Qué es lo peor que puede pasar si repruebo o me equivoco?. A menudo, la ansiedad nos hace creer que es el fin del mundo, pero casi siempre hay soluciones (recuperatorio, ayuda extra, etc.). Quitarle el tinte de \"catástrofe\" ayuda a estudiar."
+            },
+            {
+                "id": 3,
+                "advice": "Foco en el proceso: En lugar de decir \"tengo que sacar 10\", di \"voy a estudiar 40 minutos hoy\". Controla lo que haces, no el resultado."
+            },
+            {
+                "id": 4,
+                "advice": "Ansiedad Social (Exponer, Grupos, Receso) Es el miedo al juicio de tus compañeros o a sentirte fuera de lugar."
+            },
+            {
+                "id": 5,
+                "advice": "La regla de los 3 segundos: Si tienes que participar en clase o acercarte a alguien, hazlo antes de que pasen 3 segundos desde que tuviste la idea. Si esperas más, tu cerebro empezará a fabricar miedos"
+            },
+            {
+                "id": 6,
+                "advice": "El efecto reflector: Recuerda que la mayoría de tus compañeros están tan preocupados por sus propios granos, su ropa o sus notas, que apenas tienen tiempo para juzgarte a ti. No eres el centro de sus críticas."
+            },
+            {
+                "id": 7,
+                "advice": "Ansiedad por Sobrecarga (El \"No llego con todo\") Sentir que el tiempo no alcanza y que las entregas se acumulan."
+            },
+            {
+                "id": 8,
+                "advice": "Vaciado de mente: Escribe en un papel TODAS las pendientes, desde \"comprar una cartulina\" hasta \"estudiar para el examen\". Verlo fuera de tu cabeza hace que parezca manejable y no una masa amorfa de estrés."
+            },
+            {
+                "id": 9,
+                "advice": "Establece una hora de \"cierre\": Decide que a las 8:00 PM (por ejemplo) se acaba la escuela por hoy. El cerebro necesita saber que el estrés tiene un límite diario para poder descansar."
+            }
+        ],
+        "exclusion-redes-sociales": [
+            {
+                "id": 1,
+                "advice": "Del \"Modo Espectador\" al \"Modo Protagonista\"\nLa ansiedad por exclusión crece cuando estás\nsentado mirando la vida de otros a través de una pantalla."
+            },
+            {
+                "id": 2,
+                "advice": "Haz un plan propio: No tiene que ser una fiesta. Sal a caminar, ve al cine solo, lee un libro o llama a un amigo que no esté en ese círculo. Pasar de \"ver lo que otros hacen\" a \"hacer algo tú\" corta el ciclo de ansiedad."
+            },
+            {
+                "id": 3,
+                "advice": "Conexión real: Envía un mensaje a alguien que aprecies. La conexión uno a uno"
+            },
+            {
+                "id": 4,
+                "advice": "reduce la ansiedad más que los \"me gusta\" o comentarios en redes sociales."
+            }
+        ],
+        "sentirse-el-raro": [
+            {
+                "id": 1,
+                "advice": "Cambia la etiqueta: De \"Raro\" a \"Auténtico\"\nLa palabra \"raro\" suele tener una carga negativa,\npero ser diferente solo significa que tu identidad no es\nuna copia de la de los demás."
+            },
+            {
+                "id": 2,
+                "advice": "La trampa del encaje:\nIntentar encajar a la fuerza es\ncomo tratar de poner una pieza\nde rompecabezas en el lugar equivocado;\nte vas a desgastar y terminarás sintiendote más solo"
+            },
+            {
+                "id": 3,
+                "advice": "Practica la autoaceptación: Aceptarte a ti mismo, con tus diferencias, es un acto poderoso contra la ansiedad social. Recuerda que ser auténtico atrae a las personas correctas. Sintiendote más solo"
+            },
+            {
+                "id": 4,
+                "advice": "Aceptación radical:\nEn lugar de\npreguntarte\n\"¿Qué tiene\nde malo mi\nforma de ser? empieza a\npreguntarte\n\"¿Qué de lo\nque soy me gusta aunque a los demas no?\""
+            },
+            {
+                "id": 5,
+                "advice": "Cuando sientas ansiedad por ser diferente en el salón de clases:"
+            },
+            {
+                "id": 6,
+                "advice": "Mira a tu alrededor y\nfíjate cómo\nmuchos\nactúan solo\npor seguir\nla\ncorriente."
+            },
+            {
+                "id": 7,
+                "advice": "Mírate a ti mismo\ncomo un\nobservador\n: \"Soy\ndiferente y\neso me da\nuna\nperspectiva\núnica\"."
+            },
+            {
+                "id": 8,
+                "advice": "La ansiedad\nbaja\ncuando\ndejas de\nluchar\ncontra tu\nnaturaleza\ny empiezas\na abrazarla."
+            }
+        ]
+    },
+    "tristeza": {
+        "conflictos-familiares": [
+            {
+                "id": 1,
+                "advice": "No todas las discusiones valen la pena. Si cedes en cosas pequeñas (como arreglar tu cuarto), tendrás más \"puntos\" para negociar las cosas grandes (como salir el fin de semana)."
+            },
+            {
+                "id": 2,
+                "advice": "Nunca intentes resolver un conflicto cuando ambos están gritando. Di: \"Ahora estoy enojado y no quiero decir algo malo, hablemos más tarde\". Esto demuestra una madurez que suele dejarlos sin palabras."
+            },
+            {
+                "id": 3,
+                "advice": "Compartir una actividad pequeña que no requiera hablar mucho (ver una serie, cocinar algo, pasear al perro)."
+            }
+        ],
+        "dificultades-academicas": [
+            {
+                "id": 1,
+                "advice": "Repítete: \"Mi calificación es el resultado de un examen, no es mi valor como persona\". Una nota mide rendimiento, no inteligencia total ni futuro éxito."
+            },
+            {
+                "id": 2,
+                "advice": "Pregúntate si es falta de estudio, falta de interés o si el método de enseñanza no te sirve. A veces, un video de YouTube o una explicación diferente pueden hacer la diferencia."
+            },
+            {
+                "id": 3,
+                "advice": "No esperes al examen final. Pide a un compañero que sí entiende que te explique 15 minutos. A veces entre amigos se entiende mejor el lenguaje."
+            }
+        ],
+        "rechazo-social": [
+            {
+                "id": 1,
+                "advice": "Recuerda que no puedes agradar a todo el mundo. Enfócate en las personas que te valoran por quien eres."
+            },
+            {
+                "id": 2,
+                "advice": "Practica la autocompasión. Habla contigo mismo como lo harías con un buen amigo que está pasando por un momento difícil."
+            },
+            {
+                "id": 3,
+                "advice": "Involúcrate en actividades o grupos que compartan tus intereses. Esto puede ayudarte a encontrar personas con las que conectes de manera más auténtica."
+            }
+        ],
+        "falta-autoestima": [
+            {
+                "id": 1,
+                "advice": "Haz una lista de tus logros y cualidades positivas. Léela cuando te sientas inseguro."
+            },
+            {
+                "id": 2,
+                "advice": "Evita compararte con los demás. Cada persona tiene su propio camino y ritmo."
+            },
+            {
+                "id": 3,
+                "advice": "Practica el autocuidado. Dedica tiempo a actividades que disfrutes y que te hagan sentir bien contigo mismo."
+            }
+        ],
+        "visto-falta-de-mensajes": [
+            {
+                "id": 1,
+                "advice": "Recuerda que la comunicación es una calle de dos vías. Si no recibes respuestas, puede ser útil evaluar si estás comunicándote de manera efectiva."
+            },
+            {
+                "id": 2,
+                "advice": "No tomes la falta de respuesta como algo personal. Las personas pueden estar ocupadas o distraídas."
+            },
+            {
+                "id": 3,
+                "advice": "Considera diversificar tus métodos de comunicación. A veces, un mensaje de texto puede no ser tan efectivo como una llamada o una conversación cara a cara."
+            }
+        ],
+        "situaciones-en-la-escuela": [
+            {
+                "id": 1,
+                "advice": "Si te sientes incómodo en la escuela, busca un lugar tranquilo donde puedas relajarte y recargar energías."
+            },
+            {
+                "id": 2,
+                "advice": "Habla con un consejero escolar o un adulto de confianza sobre tus sentimientos. Ellos pueden ofrecerte apoyo y orientación."
+            },
+            {
+                "id": 3,
+                "advice": "Participa en actividades extracurriculares que te interesen. Esto puede ayudarte a hacer nuevos amigos y sentirte más conectado con la comunidad escolar."
+            }
+        ],
+        "exclusion-redes-sociales": [
+            {
+                "id": 1,
+                "advice": "Recuerda que las redes sociales no reflejan la realidad completa. No te compares con las versiones idealizadas que otros muestran en línea."
+            },
+            {
+                "id": 2,
+                "advice": "Si te sientes excluido, considera hablar directamente con las personas involucradas para expresar cómo te sientes."
+            },
+            {
+                "id": 3,
+                "advice": "Enfócate en construir relaciones auténticas fuera de las redes sociales. Las conexiones cara a cara suelen ser más significativas."
+            }
+        ],
+        "sentirse-el-raro": [
+            {
+                "id": 1,
+                "advice": "Recuerda que todos somos únicos y diferentes. Lo que te hace sentir raro puede ser lo que te hace especial."
+            },
+            {
+                "id": 2,
+                "advice": "Busca personas que compartan tus intereses y valores. Encontrar una comunidad donde te sientas aceptado puede hacer una gran diferencia."
+            },
+            {
+                "id": 3,
+                "advice": "Practica la autoaceptación. Aceptarte a ti mismo tal como eres es un paso importante para sentirte cómodo en tu propia piel."
+            }
+        ]
+    },
+    "soledad": {
+        "conflictos-familiares": [
+            {
+                "id": 1,
+                "advice": "No te castigues por sentirte mal. Reconocer que \"esto duele y me siento solo\" es el primer paso para procesarlo. A veces intentamos minimizar el conflicto para que duela menos, pero eso solo aumenta la sensación de vacío."
+            }
+        ],
+        "dificultades-academicas": [
+            {
+                "id": 1,
+                "advice": "Cuando las dificultades académicas te aíslen, recuerda que no entender un tema no es una falla personal, sino un reto técnico: rompe el aislamiento pidiendo ayuda a profesores o compañeros, pues el aprendizaje es más efectivo cuando es compartido. Apóyate en tu experiencia resolviendo problemas complejos y mantén la vista en tu meta, recordando que un bache escolar no define tu capacidad ni tu inteligencia."
+            }
+        ],
+        "rechazo-social": [
+            {
+                "id": 1,
+                "advice": "Recuerda que muchos de los líderes, artistas y mentes más brillantes pasaron por etapas de rechazo social antes de encontrar su lugar. Ese espacio de soledad puede ser, aunque duela, el terreno donde crezca tu versión más auténtica."
+            }
+        ],
+        "falta-autoestima": [
+            {
+                "id": 1,
+                "advice": "Empieza por reconocer tus logros reales, como tu liderazgo en proyectos sociales y tu camino hacia la ingeniería, para recordarte que posees habilidades valiosas que no dependen del juicio de los demás. Cambia el diálogo interno crítico por uno de autocompasión; si no le dirías palabras hirientes a alguien que estimas, no te las digas a ti mismo. Al fortalecer tu seguridad interna, la soledad dejará de sentirse como una carencia de otros y se convertirá en un espacio de crecimiento personal, permitiéndote conectar con los demás desde la autenticidad y no desde la necesidad."
+            }
+        ],
+        "visto-falta-de-mensajes": [
+            {
+                "id": 1,
+                "advice": "Cuando te sientes solo por falta de mensajes, es fácil enviar un mensaje impulsivo de reclamo o \"despedida\" del que luego podrías arrepentirte. Espera a que la emoción baje para evaluar si realmente necesitas hablar sobre cómo te sientes con esa persona."
+            }
+        ],
+        "situaciones-en-la-escuela": [
+            {
+                "id": 1,
+                "advice": "Cuando la escuela se vuelve un lugar solitario, recuerda que tu valor no depende de la popularidad ni de encajar en todos los grupos, sino de la autenticidad con la que recorres tu propio camino. Si te sientes excluido o fuera de lugar, enfócate en tus metas académicas y en los proyectos que te apasionan, como Bioequilibrio o tu preparación para la tus estudios, ya que estas metas te conectan con personas que comparten tus mismos valores a largo plazo. No temas ser tú mismo; a menudo, quienes se sienten \"solos\" en la escuela son aquellos que están construyendo una identidad más sólida y madura que la del promedio."
+            }
+        ],
+        "exclusion-redes-sociales": [
+            {
+                "id": 1,
+                "advice": "Cuando te sientas solo, recuerda que el silencio de los demás no define tu valor; el \"visto\" o la exclusión en redes sociales suelen ser distracciones ajenas y no un rechazo hacia ti, por lo que lo mejor es soltar el teléfono, evitar crear historias negativas en tu mente y canalizar esa energía en lo que sí puedes controlar: tus propios proyectos, tus metas en la ingeniería y las personas que ya están presentes para ti. Trátate con la misma compasión que tratarías a un amigo, priorizando la paz mental de lo real sobre la validación de lo digital."
+            }
+        ],
+        "sentirse-el-raro": [
+            {
+                "id": 1,
+                "advice": "Sentir que eres \"raro\" o diferente puede generar una soledad profunda, pero esa diferencia es, en realidad, tu mayor fortaleza: es la señal de que tienes una identidad propia y no eres una copia de los demás. En lugar de intentar forzarte a encajar en moldes que no te quedan, abraza esas características únicas como tu pasión por tus actividades favoritas, la tecnología o tus proyectos sociales pues son precisamente las que te permitirán destacar y encontrar a \"tu gente\" en el futuro. Recuerda que muchas de las personas más brillantes e innovadoras se sintieron fuera de lugar en algún momento; ser diferente no significa estar defectuoso, significa que estás destinado a construir un camino auténtico que otros aún no comprenden."
+            }
+        ]
+    }
 }
