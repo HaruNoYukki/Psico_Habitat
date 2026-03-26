@@ -320,5 +320,13 @@
                 "advice": "Sentir que eres \"raro\" o diferente puede generar una soledad profunda, pero esa diferencia es, en realidad, tu mayor fortaleza: es la señal de que tienes una identidad propia y no eres una copia de los demás. En lugar de intentar forzarte a encajar en moldes que no te quedan, abraza esas características únicas como tu pasión por tus actividades favoritas, la tecnología o tus proyectos sociales pues son precisamente las que te permitirán destacar y encontrar a \"tu gente\" en el futuro. Recuerda que muchas de las personas más brillantes e innovadoras se sintieron fuera de lugar en algún momento; ser diferente no significa estar defectuoso, significa que estás destinado a construir un camino auténtico que otros aún no comprenden."
             }
         ]
+    },
+    "panic":{
+        "default": [
+            {
+                "id": 1,
+                "advice": "• Inhala en 4 segundos. \n • Mantén el aire 4 segundos.\n • Exhala en 4 segundos. \n • Espera 4 segundos antes de volver a inhalar. \n (repite hasta que el ritmo cardiaco baje)."
+            } 
+        ]
     }
 }

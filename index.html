@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Psicohábitat | Bienestar y Conexión</title>
@@ -12,6 +13,13 @@
 </head>
 
 <body>
+    <div id="beta-banner" class="beta-container">
+        <div class="beta-content">
+            <span class="beta-tag">BETA</span>
+            <p>Psico Hábitat está en fase de pruebas. Algunas funciones podrían no estar disponibles.</p>
+        </div>
+        <button onclick="dismissBanner()" class="beta-close" aria-label="Cerrar">&times;</button>
+    </div>
     <div class="container">
         <header>
             <div class="logo"><i class="fas fa-leaf"></i> Psicohábitat</div>
@@ -65,7 +73,8 @@
                     <span>Tengo una crisis de pánico</span>
                 </div>
             </div>
-            <!-- NUEVO: SECCIÓN DE IA GEMINI -->
+
+            <!-- SECCIÓN DE IA GEMINI -->
             <div class="ai-companion-box">
                 <div class="ai-title"><i class="fas fa-magic"></i> ¿Prefieres contármelo?</div>
                 <textarea id="ai-mood-input" class="ai-input"
@@ -78,8 +87,10 @@
 
             <div class="us">
                 <h1>Teléfonos de ayuda</h1>
-                <h6 style="text-align: center; font-weight: normal;">(Recuerda tener a la mano un dispositivo móvil)</h6>
+                <h6 style="text-align: center; font-weight: normal;">(Recuerda tener a la mano un dispositivo móvil)
+                </h6>
             </div>
+
             <!-- Tarjetas de numeros para emergencias -->
             <div class="mood-grid">
                 <div class="mood-card" onclick="llamarTelefono('tel:8009112000')">
@@ -100,12 +111,6 @@
                     <p>Horario: 24hrs los 365 días del año.</p>
                     <p>Tel: 55-5025-0855</p>
                 </div>
-                <div class="mood-card" onclick="llamarTelefono('tel:5550250855')">
-                    <i class="fas fa-phone"></i>
-                    <p style="font-weight: bold;">Línea de atención psicológica UNAM</p>
-                    <p>Horario: Lunes a viernes de 08:00 a 18:00 hrs.</p>
-                    <p>Tel: 55-5025-0855</p>
-                </div>
                 <div class="mood-card" onclick="llamarTelefono('tel:8002900024')">
                     <i class="fas fa-phone"></i>
                     <p style="font-weight: bold;">Linea de Atencion en Crisis Psicológica</p>
@@ -118,7 +123,15 @@
                     <p>Horario: 24 hrs los 365 días del año.</p>
                     <p>Tel: 473-134-4837</p>
                 </div>
+                <div class="mood-card" onclick="llamarTelefono('tel:5550250855')">
+                    <i class="fas fa-phone"></i>
+                    <p style="font-weight: bold;">Línea de atención psicológica UNAM</p>
+                    <p>Horario: Lunes a viernes de 08:00 a 18:00 hrs.</p>
+                    <p>Tel: 55-5025-0855</p>
+                </div>
             </div>
+
+            <!-- Recordatorio de ayuda profesional -->
             <div class="us">
                 <h1>Recuerda</h1>
                 <p class="parrafah">
@@ -128,12 +141,21 @@
                     Estamos aquí para apoyarte en cada paso del camino.
                 </p>
             </div>
-            <div style="margin-top: 40px; text-align: center;">
-                <p>¿Estás buscando un especialista particular que te acompañe en tu proceso?</p>
-                <button class="btn-action" onclick="irA('premium-section')" style="margin-bottom: 20px;">
-                    Ver Directorio de Psicólogos
-                </button>
+
+            <!-- Acceso a servicios premium -->
+            <div class="mood-card", style="margin-top: 20px; margin-bottom: 30px;", onclick="irA('premium-section')">
+                <h1> Atención Privada Especializada </h1>
+                <p>¿Estás buscando un especialista particular que te acompañe en tu proceso?, da clic aqui y descubre un
+                    amplio directorio de especialistas certificados.</p>
             </div>
+
+            <!-- Boton instalación-->
+            <div class="mood-card", style="margin-top: 20px; margin-bottom: 30px;" onclick="instalarApp()">
+                <h1>Instalar App</h3>
+                    <p>Instala esta aplicacion y lleva tu bienestar emocional a donde quieras. (Algunas funciones pueden
+                        requerir conexión a internet)</p>
+            </div>
+
         </div>
 
         <!-- === SECCIÓN 2: RECURSOS === -->
@@ -149,7 +171,8 @@
             <!-- EL CIERRE VERDE MEJORADO CON IA -->
             <div class="green-closure">
                 <h3><i class="fas fa-globe-americas"></i> Tu Acción del Día</h3>
-                <p style="color:var(--text-dark)">Si este espacio te brindó un respiro, ayúdanos a cuidar nuestro hábitat común.</p>
+                <p style="color:var(--text-dark)">Si este espacio te brindó un respiro, ayúdanos a cuidar nuestro
+                    hábitat común.</p>
 
                 <span id="green-mission-text" class="mission-text">"Recoge una lata o plástico hoy y tíralo en su
                     lugar."</span>
@@ -245,13 +268,15 @@
             <button class="btn-back" onclick="irA('home-section')">
                 <i class="fas fa-arrow-left"></i> Volver al Inicio
             </button>
+            <div class="us">
+                <h2>Directorio de Especialistas</h2>
+                <p>
+                    Conectamos directamente con la base de datos de <strong>Doctoralia</strong> para mostrarte
+                    especialistas
+                    certificados.
+                </p>
+            </div>
 
-            <h2>Directorio de Especialistas</h2>
-            <p>
-                Conectamos directamente con la base de datos de <strong>Doctoralia</strong> para mostrarte
-                especialistas
-                certificados.
-            </p>
 
             <div class="external-search-box">
                 <div class="search-input-group">
@@ -279,6 +304,45 @@
             <a href="#" onclick="irA('home-section')" class="nav-link">Inicio</a>
             <a href="#" onclick="irA('premium-section')" class="nav-link">Profesionales</a>
             <!--<a href="#" class="nav-link">Nosotros</a> -->
+        </div>
+
+        <!--=== SECCIÓN 5: PWA ===-->
+        <div id="pwa-backdrop" class="pwa-backdrop"></div>
+
+        <div id="pwa-android-modal" class="pwa-modal">
+            <h3 class="pwa-modal-title">Psico Hábitat</h3>
+            <img src="img/icon.png" alt="Icono" class="pwa-modal-icon">
+
+            <div class="pwa-modal-actions">
+                <button id="btn-install-android" class="pwa-btn pwa-btn-primary" onclick="installNativeDialog()">Instalar</button>
+                <button id="btn-cancel-android" class="pwa-btn pwa-btn-text">Cancelar</button>
+            </div>
+        </div>
+
+        <div id="pwa-ios-modal" class="pwa-modal">
+            <h3 class="pwa-modal-title">Instalar App</h3>
+            <div class="pwa-ios-instructions">
+                <div class="ios-row">
+                    <span class="ios-text">1. Toca <strong>Compartir</strong></span>
+                    <svg class="ios-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 15V3M12 3L8 7M12 3L16 7" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M9 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H15"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="ios-row">
+                    <span class="ios-text">2. <strong>Añadir al inicio</strong></span>
+                    <svg class="ios-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="4" width="16" height="16" rx="4" />
+                        <path d="M12 8V16M8 12H16" stroke-linecap="round" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="pwa-modal-actions">
+                <button id="btn-ready-ios" class="pwa-btn pwa-btn-primary">Listo</button>
+            </div>
         </div>
 
     </div>
@@ -311,7 +375,8 @@
     </div>
     </div>
 </body>
-<script src="./js/script"></script>
-<script type="module" src=""./js/config.js"></script>
+<script src="./js/script.js"></script>
+<script type="module" src="" ./js/config.js"></script>
+
 
 </html>

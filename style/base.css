@@ -49,6 +49,7 @@ h1{
     font: fredoka;
     text-align: center;
     color: var(--primary-mint);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 p{
@@ -113,6 +114,7 @@ header {
     font-size: 1.8rem;
     color: var(--primary-mint);
     font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .logo i {
@@ -154,6 +156,17 @@ h2 {
     margin-bottom: 20px;
     color: var(--primary-mint);
     text-align: center;
+    border-color: black;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--primary-mint);
+    text-align: center;
+    align-items: center;
+    text-shadow: -.5px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;
 }
 
 /* --- 6. COMPONENTE: BOTONES DE ÁNIMO (GRID) --- */
@@ -254,6 +267,9 @@ h2 {
 .resource-card {
     background: rgba(66, 116, 170, 0.5);
     border-left: 5px solid var(--primary-mint);
+    border-top: 1px solid var(--white-soft);
+    border-bottom: 1px solid var(--white-soft);
+    border-right: 1px solid var(--white-soft);
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 8px;
@@ -290,10 +306,13 @@ h2 {
     font-weight: bold;
     font-size: 0.9rem;
     transition: background 0.3s;
+    border: 1px solid var(--white-soft);
 }
 
 .btn-action:hover {
-    background-color: #74c69d;
+    transform: translateY(-5px);
+    background-color: var(--primary-mint);
+    border: 1px solid var(--white-soft);
 }
 
 .btn-back {
@@ -334,11 +353,14 @@ h2 {
 
 /* --- 8. DIRECTORIO PREMIUM (Buscador Externo) --- */
 .external-search-box {
-    background: white;
-    padding: 25px;
+    background: rgba(66, 116, 170, 0.5);
+    border: 2px solid var(--white-soft);
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eee;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .search-input-group {
@@ -350,19 +372,21 @@ h2 {
     display: block;
     font-size: 0.9rem;
     margin-bottom: 5px;
-    color: #666;
+    color: var(--primary-mint);
     font-weight: 600;
 }
 
 .search-input-group select,
 .search-input-group input {
+    background: rgba(66, 116, 170, 0.5);
     width: 100%;
     padding: 12px;
-    border: 2px solid var(--earth-sand);
+    border: 2px solid var(--white-soft);
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
     transition: border-color 0.3s;
+    color: white;
 }
 
 .search-input-group select:focus,
@@ -386,6 +410,7 @@ h2 {
     align-items: center;
     gap: 10px;
     transition: background 0.3s;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .btn-search-external:hover {
@@ -400,6 +425,8 @@ h2 {
     border-radius: 20px;
     text-align: center;
     border: 2px dashed #88b04b;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .green-closure h3 {
@@ -508,7 +535,7 @@ h2 {
     margin: 20px auto;
 }
 
-/* Botón navegación inferior */
+/* --- 11. BARRA DE NAVEGACIÓN INFERIOR (REQUIERE CAMBIOS EN DISEÑO) --- */
 .nav-bottom {
     margin-top: auto;
     display: flex;
@@ -529,4 +556,135 @@ h2 {
 .nav-link.active-link {
     color: var(--earth-dark);
     font-weight: bold;
+}
+/* --- 12. CONTENEDOR PARA FASES DE PRUEBA --- */
+.beta-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: var(--earth-dark); /* Amarillo muy suave, no agresivo */
+    border: 1px solid #ffec99;
+    color: #856404;
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.beta-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.beta-tag {
+    background-color: #fcc419;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.beta-container p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.beta-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #856404;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+/* --- 13. ESTILOS PARA LA TARJETA DE INSTALACIÓN  ANDROID --- */
+
+/* --- FONDO OSCURO --- */
+.pwa-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9998;
+    display: none; /* Oculto por defecto */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* --- CONTENEDOR DEL MODAL --- */
+.pwa-modal {
+    background: rgba(66, 116, 170, 0.5);
+    border: 2px solid var(--white-soft);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* Centrado exacto y escala reducida para la animación */
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 85%;
+    max-width: 320px;
+    border-radius: 14px; /* Estilo iOS nativo */
+    padding: 24px;
+    z-index: 9999;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: none; /* Oculto por defecto */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Clases activas para disparar la animación */
+.pwa-backdrop.active { opacity: 1; }
+.pwa-modal.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- ELEMENTOS INTERNOS ANDROID --- */
+.pwa-modal-title { margin: 0 0 16px 0; font-family: sans-serif; font-size: 1.2rem; }
+.pwa-modal-icon { width: 80px; height: 80px; border-radius: 16px; margin-bottom: 24px; object-fit: cover; }
+
+/* --- ELEMENTOS INTERNOS iOS --- */
+.pwa-ios-instructions { margin: 20px 0; display: flex; flex-direction: column; gap: 16px; }
+.ios-row { 
+    display: flex; 
+    justify-content: space-between; /* Texto izquierda, icono derecha */
+    align-items: center; 
+    font-family: sans-serif;
+    color: var(--white-soft);
+}
+.ios-text { text-align: left; font-size: 0.95rem; }
+.ios-icon { width: 24px; height: 24px; color: #61a6ef; }
+
+/* --- BOTONES --- */
+.pwa-modal-actions { display: flex; flex-direction: column; gap: 10px; }
+.pwa-btn {
+    width: 100%; padding: 12px; border: none; border-radius: 10px;
+    font-size: 1rem; font-weight: 600; cursor: pointer;
+}
+.pwa-btn-primary { background-color: var(--primary-mint); color: white; }
+.pwa-btn-text { background-color: transparent; color: white; }
+
+/* Soporte para 'safe-area' en Androids modernos con gestos */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .android-install-card {
+        padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    }
+}
+
+/* Ajuste para móviles con notch (iOS) */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .beta-container {
+        bottom: calc(20px + env(safe-area-inset-bottom));
+    }
 }
