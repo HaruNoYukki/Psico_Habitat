@@ -20,6 +20,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault(); 
     deferredPrompt = e;
 });
+
 // --- 1. SERVICE WORKER PARA FUNCION OFFLINE ---
 if ('serviceWorker' in navigator) {
     if ('serviceWorker' in navigator) {
