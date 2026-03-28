@@ -1,4 +1,4 @@
-// --- GEMINI API SETUP ---
+// --- GLOBAL VARIABLES ---
 const GEMINI_API_KEY = "AIzaSyBaVBHIJ8tRrBi6U86-75MorEEnmJ44yJU";
 
 var animo = '';
@@ -9,7 +9,9 @@ var adviceController = false;
 
 let apps = null;
 
+const installStatus = window.matchMedia('(display-mode: standalone)').matches ? 'installed' : 'not installed';
 
+// --- 0. INSTANCIAS INICIALES ---
 document.getElementById('btn-cancel-android').addEventListener('click', closeModal);
 document.getElementById('btn-ready-ios').addEventListener('click', closeModal);
 
@@ -18,8 +20,21 @@ window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault(); 
     deferredPrompt = e;
 });
+// --- 1. SERVICE WORKER PARA FUNCION OFFLINE ---
+if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker registrado con éxito:', registration);
+            })
+            .catch(error => {
+                console.error('Error al registrar el Service Worker:', error);
+            });
+    }
+}
 
-// --- 1. BASE DE DATOS LOCAL )(MOVER A UN JSON) ---
+
+// --- 2. BASE DE DATOS LOCAL )(MOVER A UN JSON) ---
 var bdRecursos = [
     { id: 1, tag: 'ansiedad', titulo: 'Playlist: Calma tu ansiedad', tipo: 'Web', link: 'https://open.spotify.com/playlist/6bT8zo10MdHsESTQNPXFW8?si=mqr7BTHLQBG7fPayRbniCw&pi=FOFcWn5zTGqt6' },
     { id: 2, tag: 'ansiedad', titulo: 'Playlist: Calm your Anxiety', tipo: 'Web', link: 'https://open.spotify.com/playlist/1y5R84CnSLoLcSRb4WCFAB?si=ZqrqfbMzQMSbRvvCUmN0vA&pi=efONrH3PQzGg8' },
@@ -315,13 +330,6 @@ async function requestPersistence() {
     }
 }
 
-requestPersistence();
-
-if (window.matchMedia('(display-mode: standalone)').matches) {
-    // Aquí es donde tienes más chance de que Safari diga que sí
-    requestPersistence();
-}
-
 // --- 12. CONTENEDOR PARA FASES DE PRUEBA ---
 function dismissBanner() {
     const banner = document.getElementById('beta-banner');
@@ -338,6 +346,11 @@ window.onload = () => {
     }
 };
 // --- 13. FUNCIÓN DE INSTALACIÓN CONTEXTUAL ---
+
+if (window.matchMedia('(display-mode: standalone)').matches) {
+    requestPersistence();
+    document.getElementById('install-btn').style.display = 'none';
+}
 
 function instalarApp() {
     let SO = detectSO();
@@ -392,6 +405,7 @@ function installNativeDialog() {
     closeModal();
 }
 
+// --- 13 COSITOS DE GEMINI ---
 // Función helper para llamar a Gemini
 async function callGemini(promptText) {
     try {
@@ -477,3 +491,316 @@ async function generarMisionIA() {
         missionText.innerText = '"Abraza un árbol cercano y siente su calma."';
     }
 }
+
+// --- 14. VIDEOJUEGO ---
+   // --- ASSETS Y DEFINICIONES ---
+    
+    // Lo que SÍ se debe recoger
+    const TRASH_TYPES = [
+    { type: 'organic', icon: 'fa-apple-whole', color: '#e74c3c' },
+    { type: 'organic', icon: 'fa-carrot', color: '#e67e22' },
+    { type: 'inorganic', icon: 'fa-plug', color: '#32CD32' },
+    { type: 'inorganic', icon: 'fa-bolt', color: '#f39c12' },
+    { type: 'recyclable', icon: 'fa-box', color: '#8e44ad' } // Cambiado
+];
+    // Lo que NO se debe recoger (Esquivar)
+    const LIFE_TYPES = [
+    { type: 'life', icon: 'fa-paw', color: '#a0522d' },
+    { type: 'life', icon: 'fa-crow', color: '#3498db'}, // fa-bird era Pro, fa-crow es Free
+    { type: 'life', icon: 'fa-tree', color: '#228B22' },
+    { type: 'life', icon: 'fa-bug', color: '#654321' }, // fa-bugs era nuevo, fa-bug es clásico
+    { type: 'life', icon: 'fa-clover', color: '#32CD32' } // Cambiado
+    ];
+
+    // Combinación de ítems para el spawn (70% basura, 30% vida)
+    const SPAWN_ITEMS = [
+        ...TRASH_TYPES.map(item => ({ ...item, isTrash: true })),
+        ...LIFE_TYPES.map(item => ({ ...item, isTrash: false })),
+        ...LIFE_TYPES.map(item => ({ ...item, isTrash: false })) // Duplicate life to increase spawn chance
+    ];
+
+    // --- VARIABLES DE ESTADO ---
+    let state = {
+        score: 0, lives: 3, round: 1,
+        totalCaught: 0, totalSortedCorrectly: 0,
+        trashCaughtThisRound: [], // Objetos de basura atrapados
+        trashToSpawnThisRound: 5, trashSpawned: 0,
+        speedMultiplier: 1, isPlaying: false, animationId: null
+    };
+
+    // Referencias al DOM
+    const gameContainer = document.getElementById('game-container');
+    const catchPhase = document.getElementById('catch-phase');
+    const sortPhase = document.getElementById('sort-phase');
+    const gameOverPhase = document.getElementById('game-over');
+    const rulesPhase = document.getElementById('rules-phase');
+    const player = document.getElementById('player');
+    
+    let playerX = gameContainer.clientWidth / 2;
+    const playerWidth = 50; // Aprox 3.2rem
+
+    // --- LÓGICA DE MOVIMIENTO ---
+    function movePlayer(clientX) {
+        if (!state.isPlaying) return;
+        const containerRect = gameContainer.getBoundingClientRect();
+        let newX = clientX - containerRect.left;
+        
+        // Límites
+        if (newX < playerWidth/2) newX = playerWidth/2;
+        if (newX > containerRect.width - playerWidth/2) newX = containerRect.width - playerWidth/2;
+        
+        playerX = newX;
+        player.style.left = `${playerX}px`;
+    }
+
+    // Soporte Mouse y Touch (crucial: passive false)
+    catchPhase.addEventListener('touchmove', (e) => {
+        movePlayer(e.touches[0].clientX);
+        if(e.cancelable) e.preventDefault(); 
+    }, {passive: false});
+    catchPhase.addEventListener('mousemove', (e) => movePlayer(e.clientX));
+
+    // --- LOOP PRINCIPAL (Fase 1) ---
+    let lastSpawnTime = 0;
+    let spawnInterval = 1600; 
+    let activeItems = []; // Objetos cayendo
+
+    function gameLoop(timestamp) {
+        if (!state.isPlaying) return;
+
+        // Spawn
+        if (timestamp - lastSpawnTime > spawnInterval && state.trashSpawned < state.trashToSpawnThisRound) {
+            spawnFallingItem();
+            lastSpawnTime = timestamp;
+            state.trashSpawned++;
+        }
+
+        // Mover y colisiones
+        for (let i = activeItems.length - 1; i >= 0; i--) {
+            const item = activeItems[i];
+            const currentY = parseFloat(item.element.style.top) || 0;
+            // Velocidad base 3px + multiplicador por ronda
+            const newY = currentY + (3 * state.speedMultiplier); 
+            item.element.style.top = `${newY}px`;
+
+            const playerRect = player.getBoundingClientRect();
+            const itemRect = item.element.getBoundingClientRect();
+
+            // 1. Atrapado (Colisión con jugador)
+            if (isColliding(playerRect, itemRect)) {
+                catchPhase.removeChild(item.element);
+                activeItems.splice(i, 1);
+                
+                if (item.data.isTrash) {
+                    // PUNTO CORRECTO
+                    state.score += 100;
+                    state.totalCaught++;
+                    state.trashCaughtThisRound.push(item.data);
+                    // Feedback visual (pulso verde opcional)
+                } else {
+                    // PUNTO INCORRECTO: ¡Tocó vida!
+                    state.lives--;
+                    if (state.lives <= 0) { endGame(); return; }
+                    flashScreen('rgba(231, 76, 60, 0.4)'); // Feedback rojo
+                }
+                
+                updateUI();
+                checkRoundEnd();
+                continue;
+            }
+
+            // 2. Esquivado / Perdido (Suelo)
+            // -45 para que se "meta" un poco en la tierra
+            if (newY > catchPhase.clientHeight - 45) { 
+                catchPhase.removeChild(item.element);
+                activeItems.splice(i, 1);
+                
+                if (item.data.isTrash) {
+                    // PERDIÓ BASURA
+                    state.lives--;
+                    if (state.lives <= 0) { endGame(); return; }
+                    flashScreen('rgba(139, 69, 19, 0.4)'); // Feedback café/tierra
+                } else {
+                    // ESQUIVÓ VIDA (Correcto)
+                    // Podrías sumar un puntaje pequeño aquí si quieres
+                }
+                
+                updateUI();
+                checkRoundEnd();
+            }
+        }
+
+        state.animationId = requestAnimationFrame(gameLoop);
+    }
+
+    function isColliding(rect1, rect2) {
+        // Reducimos un poco la hitbox para que no sea tan injusto en móvil
+        const padding = 5;
+        return !(rect1.right - padding < rect2.left + padding || 
+                 rect1.left + padding > rect2.right - padding || 
+                 rect1.bottom - padding < rect2.top + padding || 
+                 rect1.top + padding > rect2.bottom - padding);
+    }
+
+    function spawnFallingItem() {
+        // Seleccionar al azar de SPAWN_ITEMS
+        const randomData = SPAWN_ITEMS[Math.floor(Math.random() * SPAWN_ITEMS.length)];
+        
+        const el = document.createElement('i');
+        el.className = `fa-solid ${randomData.icon} falling-item`;
+        el.style.color = randomData.color;
+        
+        const containerWidth = document.getElementById('game-container').offsetWidth ;
+        // Padding de 20px para no nacer pegado a la pared
+        const safetyMargin = 40;
+        const randomX = Math.random() * (containerWidth - (safetyMargin * 2)) + safetyMargin;
+        
+        el.style.left = `${randomX}px`;
+        el.style.top = '-60px'; // Nace arriba
+        
+        catchPhase.appendChild(el);
+        activeItems.push({ element: el, data: randomData });
+    }
+
+    function checkRoundEnd() {
+        if (state.trashSpawned >= state.trashToSpawnThisRound && activeItems.length === 0) {
+            state.isPlaying = false;
+            cancelAnimationFrame(state.animationId);
+            
+            // Pausa antes de la fase de clasificación o siguiente ronda
+            setTimeout(() => {
+                if (state.trashCaughtThisRound.length > 0) {
+                    startSortingPhase();
+                } else {
+                    nextRound();
+                }
+            }, 500);
+        }
+    }
+
+    // Feedback visual al perder vida
+    function flashScreen(color) {
+        catchPhase.style.backgroundColor = color;
+        setTimeout(() => {
+            catchPhase.style.backgroundColor = 'transparent';
+        }, 150);
+    }
+
+    // --- FASE 2: CLASIFICACIÓN ---
+    let currentSortIndex = 0;
+
+    function startSortingPhase() {
+        sortPhase.classList.add('active-screen');
+        currentSortIndex = 0;
+        showNextItemToSort();
+    }
+
+    function showNextItemToSort() {
+        if (currentSortIndex >= state.trashCaughtThisRound.length) {
+            // Terminó clasificación
+            sortPhase.classList.remove('active-screen');
+            nextRound();
+            return;
+        }
+
+        const item = state.trashCaughtThisRound[currentSortIndex];
+        const iconEl = document.getElementById('item-to-sort');
+        
+        iconEl.innerHTML = `<i class="fa-solid ${item.icon}" style="color: ${item.color}"></i>`;
+        document.getElementById('sort-progress').innerText = `${currentSortIndex + 1} / ${state.trashCaughtThisRound.length}`;
+    }
+
+    function checkSort(selectedType) {
+        const item = state.trashCaughtThisRound[currentSortIndex];
+        
+        if (selectedType === item.type) {
+            state.totalSortedCorrectly++;
+            // Feedback correcto (podrías animar el ícono)
+        } else {
+            // INCORRECTO
+            state.score -= 50;
+            if (state.score < 0) state.score = 0; 
+            // Podrías vibrar o poner ícono en rojo
+        }
+
+        updateUI();
+        currentSortIndex++;
+        
+        setTimeout(showNextItemToSort, 250);
+    }
+
+    // --- TRANSICIONES Y RESTART ---
+    function nextRound() {
+        state.round++;
+        state.trashCaughtThisRound = [];
+        state.trashSpawned = 0;
+        
+        // Aumentar dificultad
+        state.trashToSpawnThisRound += 2; // Más ítems
+        state.speedMultiplier += 0.2; // Más rápido base
+        // Tope de velocidad 500ms
+        spawnInterval = Math.max(500, spawnInterval - 120); 
+
+        updateUI();
+        state.isPlaying = true;
+        lastSpawnTime = performance.now();
+        state.animationId = requestAnimationFrame(gameLoop);
+    }
+
+    function endGame() {
+        state.isPlaying = false;
+        cancelAnimationFrame(state.animationId);
+        
+        // Limpiar ítems
+        activeItems.forEach(t => catchPhase.removeChild(t.element));
+        activeItems = [];
+
+        // Llenar stats
+        document.getElementById('go-score').innerText = state.score;
+        // Rondas completadas es ronda actual - 1 (a menos que pierda en interronda)
+        document.getElementById('go-rounds').innerText = state.round - 1;
+        document.getElementById('go-caught').innerText = state.totalCaught;
+        document.getElementById('go-sorted').innerText = state.totalSortedCorrectly;
+
+        gameOverPhase.classList.add('active-screen');
+    }
+
+    // Función inicial para el botón del popup de reglas
+    function startGame() {
+        rulesPhase.classList.remove('active-screen');
+        // Reset state por si acaso
+        state = {
+            score: 0, lives: 3, round: 1, totalCaught: 0, totalSortedCorrectly: 0,
+            trashCaughtThisRound: [], trashToSpawnThisRound: 5, trashSpawned: 0,
+            speedMultiplier: 1, isPlaying: true, animationId: null
+        };
+        spawnInterval = 1600;
+        
+        lastSpawnTime = performance.now();
+        updateUI();
+        state.animationId = requestAnimationFrame(gameLoop);
+    }
+
+    // Función para el botón de jugar de nuevo
+    function resetGame() {
+        gameOverPhase.classList.remove('active-screen');
+        sortPhase.classList.remove('active-screen');
+        // Volver a mostrar reglas para reiniciar el flujo limpio
+        rulesPhase.classList.add('active-screen');
+        console.log("Juego reiniciado, esperando a que el jugador lea las reglas y presione jugar.");
+        updateUI();
+    }
+
+    function updateUI() {
+        document.getElementById('ui-score').innerText = state.score;
+        document.getElementById('ui-lives').innerText = state.lives;
+        document.getElementById('ui-round').innerText = state.round;
+    }
+
+    // Al cargar, centrar jugador y UI, pero esperar a startGame
+    window.onload = () => {
+        const containerWidth = gameContainer.clientWidth;
+        playerX = containerWidth / 2;
+        player.style.left = `${playerX}px`;
+        updateUI();
+    };

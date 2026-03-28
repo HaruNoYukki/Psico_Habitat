@@ -18,11 +18,14 @@
     /* Para crisis, no agresivo */
     --gemini-purple: #8e44ad;
     /* Color para características IA */
+
+    --game-red: #e74c3c;
+    /* Para elementos de peligro en el juego */
 }
 
 
 /* --- 2. RESET Y BASES --- */
-.fredoka{
+.fredoka {
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -31,35 +34,35 @@
         "wdth" 100;
 }
 
-.nunito{
-  font-family: "Nunito", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: normal;
+.nunito {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Fredoka,Nunito;
+    font-family: Fredoka, Nunito;
 }
 
-h1{
+h1 {
     font: fredoka;
     text-align: center;
     color: var(--primary-mint);
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-p{
+p {
     font: nunito;
     text-align: center;
     margin-bottom: 25px;
     color: var(--white-soft);
 }
 
-.us{
+.us {
     background: rgba(66, 116, 170, 0.5);
     border: 2px solid var(--white-soft);
     border-radius: 15px;
@@ -70,18 +73,18 @@ p{
     margin-top: 30px;
 }
 
-.parrafah{
+.parrafah {
     text-align: justify;
 }
 
-span{
+span {
     font: fredoka;
 }
 
 body {
     background-image: url("../img/fondo.jpg");
     background-repeat: no-repeat;
-    background-attachment:fixed;
+    background-attachment: fixed;
     background-position: top;
     background-size: cover;
 
@@ -157,7 +160,7 @@ h2 {
     color: var(--primary-mint);
     text-align: center;
     border-color: black;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 h3 {
@@ -327,7 +330,7 @@ h3 {
     font-size: 1rem;
 }
 
-.btn-back:hover{
+.btn-back:hover {
     color: var(--primary-mint);
 }
 
@@ -341,11 +344,11 @@ h3 {
     font-size: 1rem;
 }
 
-.btn-skip-survey:hover{
+.btn-skip-survey:hover {
     color: var(--primary-mint);
-}   
+}
 
-.btn-survey-grid{
+.btn-survey-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
@@ -542,7 +545,8 @@ h3 {
     justify-content: center;
     gap: 10px;
     padding-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--white-soft)
+    
 }
 
 .nav-link {
@@ -557,6 +561,7 @@ h3 {
     color: var(--earth-dark);
     font-weight: bold;
 }
+
 /* --- 12. CONTENEDOR PARA FASES DE PRUEBA --- */
 .beta-container {
     position: fixed;
@@ -565,7 +570,8 @@ h3 {
     transform: translateX(-50%);
     width: 90%;
     max-width: 600px;
-    background-color: var(--earth-dark); /* Amarillo muy suave, no agresivo */
+    background-color: var(--earth-dark);
+    /* Amarillo muy suave, no agresivo */
     border: 1px solid #ffec99;
     color: #856404;
     padding: 12px 20px;
@@ -611,18 +617,20 @@ h3 {
 
 /* --- 13. ESTILOS PARA LA TARJETA DE INSTALACIÓN  ANDROID --- */
 
-/* --- FONDO OSCURO --- */
 .pwa-backdrop {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 9998;
-    display: none; /* Oculto por defecto */
+    display: none;
+    /* Oculto por defecto */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-/* --- CONTENEDOR DEL MODAL --- */
 .pwa-modal {
     background: rgba(66, 116, 170, 0.5);
     border: 2px solid var(--white-soft);
@@ -633,58 +641,323 @@ h3 {
     transform: translate(-50%, -50%) scale(0.95);
     width: 85%;
     max-width: 320px;
-    border-radius: 14px; /* Estilo iOS nativo */
+    border-radius: 14px;
+    /* Estilo iOS nativo */
     padding: 24px;
     z-index: 9999;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    display: none; /* Oculto por defecto */
+    display: none;
+    /* Oculto por defecto */
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Clases activas para disparar la animación */
-.pwa-backdrop.active { opacity: 1; }
+.pwa-backdrop.active {
+    opacity: 1;
+}
+
 .pwa-modal.active {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* --- ELEMENTOS INTERNOS ANDROID --- */
-.pwa-modal-title { margin: 0 0 16px 0; font-family: sans-serif; font-size: 1.2rem; }
-.pwa-modal-icon { width: 80px; height: 80px; border-radius: 16px; margin-bottom: 24px; object-fit: cover; }
+.pwa-modal-title {
+    margin: 0 0 16px 0;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+}
 
-/* --- ELEMENTOS INTERNOS iOS --- */
-.pwa-ios-instructions { margin: 20px 0; display: flex; flex-direction: column; gap: 16px; }
-.ios-row { 
-    display: flex; 
-    justify-content: space-between; /* Texto izquierda, icono derecha */
-    align-items: center; 
+.pwa-modal-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    object-fit: cover;
+}
+
+.pwa-ios-instructions {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ios-row {
+    display: flex;
+    justify-content: space-between;
+    /* Texto izquierda, icono derecha */
+    align-items: center;
     font-family: sans-serif;
     color: var(--white-soft);
 }
-.ios-text { text-align: left; font-size: 0.95rem; }
-.ios-icon { width: 24px; height: 24px; color: #61a6ef; }
 
-/* --- BOTONES --- */
-.pwa-modal-actions { display: flex; flex-direction: column; gap: 10px; }
-.pwa-btn {
-    width: 100%; padding: 12px; border: none; border-radius: 10px;
-    font-size: 1rem; font-weight: 600; cursor: pointer;
+.ios-text {
+    text-align: left;
+    font-size: 0.95rem;
 }
-.pwa-btn-primary { background-color: var(--primary-mint); color: white; }
-.pwa-btn-text { background-color: transparent; color: white; }
 
-/* Soporte para 'safe-area' en Androids modernos con gestos */
+.ios-icon {
+    width: 24px;
+    height: 24px;
+    color: #61a6ef;
+}
+
+.pwa-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pwa-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pwa-btn-primary {
+    background-color: var(--primary-mint);
+    color: white;
+}
+
+.pwa-btn-text {
+    background-color: transparent;
+    color: white;
+}
+
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
     .android-install-card {
         padding-bottom: calc(16px + env(safe-area-inset-bottom));
     }
 }
 
-/* Ajuste para móviles con notch (iOS) */
 @supports (padding: env(safe-area-inset-bottom)) {
     .beta-container {
         bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+}
+
+/* --- 14. ESTILOS PARA VIDEOJUEGO --- */
+#game-container {
+    background: rgba(167, 200, 236, 0.9);
+    border: 2px solid var(--white-soft);
+    border-radius: 15px;
+    padding: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    height: 80vh;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+#ui-layer {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 10;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+#catch-phase {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: crosshair;
+}
+
+#player {
+    position: absolute;
+    bottom: 25px; /* Ajústalo según la altura de tu tierra/suelo */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    /* Eliminamos el font-size y el color viejos */
+}
+.player-asset{
+    width: 60px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.falling-item {
+    position: absolute;
+    font-size: 2.2rem;
+    transform: translateX(-50%);
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    background-color: var(--ground);
+    border-top: 3px solid #654321;
+}
+
+/* --- PANTALLAS OVERLAY (Popups) --- */
+.overlay-screen {
+    background-color:  rgba(66, 116, 170, 0.9);
+    z-index: 20;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    flex-grow: 1;
+    width: 100%;
+    /* Oculto por defecto */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+    display: none;
+}
+
+.active-screen {
+    display: flex !important;
+}
+
+/* Estilo general para títulos y textos en overlays */
+.overlay-screen h2 {
+    margin-bottom: 15px;
+    color: var(--primary-mint);
+}
+
+.overlay-screen p {
+    margin-bottom: 20px;
+    color: var(--white-soft);
+    line-height: 1.4;
+}
+
+/* --- POPUP REGLAS --- */
+.rules-list {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.rules-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.rules-icon {
+    font-size: 1.5rem;
+    width: 30px;
+    text-align: center;
+}
+
+/* --- CLASIFICACIÓN (INTER-RONDA) --- */
+#item-to-sort {
+    font-size: 5.5rem;
+    margin: 30px 0;
+    animation: popIn 0.3s ease-out;
+}
+
+.bins-container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.bin-btn {
+    flex: 1;
+    padding: 15px 5px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    color: white;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.bin-org {
+    background-color: #8BC34A;
+}
+
+.bin-inorg {
+    background-color: #9E9E9E;
+}
+
+.bin-rec {
+    background-color: #2196F3;
+}
+
+/* --- GAME OVER --- */
+.game-over-title {
+    color: var(--game-red);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.stats-box {
+    background: rgba(66, 116, 170, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+    border: 1px solid var(--white-soft);
+}
+
+.stats-box p {
+    margin: 8px 0;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--white-soft);
+    padding-bottom: 8px;
+}
+
+.community-msg {
+    font-style: italic;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    padding: 0 10px;
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.btn-main {
+    background: var(--primary-mint);
+    color: var(--white-soft);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--white-soft);
+    transition: transform 0.1s;
+}
+
+.btn-main:active {
+    transform: scale(0.95);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }

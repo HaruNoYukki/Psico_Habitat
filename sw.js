@@ -2,12 +2,12 @@ const CACHE_NAME = 'psicohabitat';
 // Archivos necesarios para la funcion offline
 const ASSETS_TO_CACHE = [
   '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/advice/Apps.json',
-  '/advice/advices.json',
-  '/assets/logo.png',
+  './index.html',
+  './style/base.css',
+  './js/script.js',
+  './advice/Apps.json',
+  './advice/advices.json',
+  './assets/logo.png',
   '/offline.html' // Una página por si algo falla
 ];
 

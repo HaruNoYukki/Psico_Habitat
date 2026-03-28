@@ -28,29 +28,7 @@
 
         <!-- === SECCIÓN 1: INICIO === -->
         <div id="home-section" class="section active">
-            <div class="us">
-                <h1>
-                    ¿Quiénes somos?
-                </h1>
-                <br>
-                <p class="parrafah">Somos Andrea y Sergio, y como jóvenes comprometidos con el presente, entendemos que
-                    nuestro bienestar
-                    emocional está profundamente conectado con la salud del mundo que habitamos. En Psicohábitat,
-                    creemos
-                    firmemente que para sanar por dentro, también debemos cuidar lo que nos rodea.
-                    <br>
-                    <br>
-                    Nuestra misión es facilitarte el acceso a herramientas psicológicas y recursos de apoyo en los
-                    momentos
-                    que más lo necesitas. Queremos recordarte que cada pequeño paso que das hacia tu equilibrio personal
-                    es
-                    también un paso hacia un planeta más sano.
-                    <br>
-                    <br>
-                    Cuidamos de ti, para que tú puedas cuidar del hábitat.
-                    Andrea y Sergio: Creadores de Psicohábitat
-                </p>
-            </div>
+
             <div class="us">
                 <h1>¿Cómo te sientes hoy?</h1>
             </div>
@@ -143,14 +121,15 @@
             </div>
 
             <!-- Acceso a servicios premium -->
-            <div class="mood-card", style="margin-top: 20px; margin-bottom: 30px;", onclick="irA('premium-section')">
+            <div class="mood-card" , style="margin-top: 20px; margin-bottom: 30px;" , onclick="irA('premium-section')">
                 <h1> Atención Privada Especializada </h1>
                 <p>¿Estás buscando un especialista particular que te acompañe en tu proceso?, da clic aqui y descubre un
                     amplio directorio de especialistas certificados.</p>
             </div>
 
             <!-- Boton instalación-->
-            <div class="mood-card", style="margin-top: 20px; margin-bottom: 30px;" onclick="instalarApp()">
+            <div class="mood-card" , id="install-btn" style="margin-top: 20px; margin-bottom: 30px;"
+                onclick="instalarApp()">
                 <h1>Instalar App</h3>
                     <p>Instala esta aplicacion y lleva tu bienestar emocional a donde quieras. (Algunas funciones pueden
                         requerir conexión a internet)</p>
@@ -300,12 +279,6 @@
             </div>
         </div>
 
-        <div class="nav-bottom">
-            <a href="#" onclick="irA('home-section')" class="nav-link">Inicio</a>
-            <a href="#" onclick="irA('premium-section')" class="nav-link">Profesionales</a>
-            <!--<a href="#" class="nav-link">Nosotros</a> -->
-        </div>
-
         <!--=== SECCIÓN 5: PWA ===-->
         <div id="pwa-backdrop" class="pwa-backdrop"></div>
 
@@ -314,7 +287,8 @@
             <img src="img/icon.png" alt="Icono" class="pwa-modal-icon">
 
             <div class="pwa-modal-actions">
-                <button id="btn-install-android" class="pwa-btn pwa-btn-primary" onclick="installNativeDialog()">Instalar</button>
+                <button id="btn-install-android" class="pwa-btn pwa-btn-primary"
+                    onclick="installNativeDialog()">Instalar</button>
                 <button id="btn-cancel-android" class="pwa-btn pwa-btn-text">Cancelar</button>
             </div>
         </div>
@@ -345,6 +319,113 @@
             </div>
         </div>
 
+        <!--=== SECCIÓN 6: NOSOTROS ===-->
+        <div id="about-section" class="section">
+            <button class="btn-back" onclick="irA('home-section')">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="us">
+                <h2>Sobre Nosotros</h2>
+                <p>
+                    Psicohábitat es un proyecto creado por Andrea y Sergio, dos jóvenes apasionados por la psicología y
+                    el bienestar emocional. Nuestra misión es ofrecer un espacio digital donde los adolescentes puedan
+                    encontrar apoyo, recursos y herramientas para cuidar su salud mental, al mismo tiempo que fomentamos
+                    una conexión consciente con nuestro entorno natural.
+                </p>
+                <p>
+                    Creemos que el bienestar personal está intrínsecamente ligado a la salud del planeta, y por eso
+                    hemos diseñado esta plataforma para inspirar a los jóvenes a cuidar de sí mismos y del mundo que los
+                    rodea. En Psicohábitat, cada acción cuenta: cuidar de tu mente es cuidar de nuestro hábitat común.
+                </p>
+            </div>
+        </div>
+
+        <!--=== SECCIÓN 7: JUEGO ===-->
+        <div id="game-section" class="section">
+
+            <button class="btn-back" onclick="irA('home-section')">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+
+            <div id="game-container" class="game-container">
+
+                <div id="ui-layer">
+                    <span>❤️ <span id="ui-lives">3</span></span>
+                    <span>Ronda: <span id="ui-round">1</span></span>
+                    <span>⭐ <span id="ui-score">0</span></span>
+                </div>
+
+                <div id="catch-phase">
+                    <div class="ground"></div>
+                    <div id="player">
+                        <img src="./img/icon.png" alt="Jugador" class="player-asset">
+                    </div>
+                </div>
+
+                <div id="rules-phase" class="overlay-screen active-screen">
+                    <h2>¿Cómo Jugar?</h2>
+                    <div class="rules-list">
+                        <div class="rules-item">
+                            <i class="fa-solid fa-trash rules-icon"></i>
+                            <p><strong>Atrapa la Basura:</strong> Muévete para recogerla. <br><span
+                                    style="color: var(--primary)">+100 puntos</span>.</p>
+                        </div>
+                        <div class="rules-item">
+                            <i class="fa-solid fa-paw rules-icon"></i>
+                            <p><strong>Esquiva la Vida:</strong> No toques animales ni plantas. <br><span
+                                    style="color: var(--danger)">Pierdes 1 vida</span>.</p>
+                        </div>
+                        <div class="rules-item">
+                            <i class="fa-solid fa-filter rules-icon" style="color: var(--primary);"></i>
+                            <p><strong>Clasifica:</strong> Al final de la ronda, segmenta la basura atrapada. Error:
+                                <span style="color: var(--danger)">-50 puntos</span>.</p>
+                        </div>
+                    </div>
+                    <button class="btn-main" onclick="startGame()">¡Entendido!</button>
+                </div>
+
+                <div id="sort-phase" class="overlay-screen">
+                    <h2>Ronda Terminada</h2>
+                    <p>Toca el bote correcto para clasificar:</p>
+
+                    <div id="item-to-sort"><i class="fa-solid fa-question"></i></div>
+                    <p id="sort-progress">1 / 5</p>
+
+                    <div class="bins-container">
+                        <button class="bin-btn bin-org" onclick="checkSort('organic')">Orgánica</button>
+                        <button class="bin-btn bin-inorg" onclick="checkSort('inorganic')">Inorgánica</button>
+                        <button class="bin-btn bin-rec" onclick="checkSort('recyclable')">Reciclable</button>
+                    </div>
+                </div>
+
+                <div id="game-over" class="overlay-screen">
+                    <h1 class="game-over-title">Juego Terminado</h1>
+
+                    <div class="stats-box">
+                        <p>Puntaje Final: <strong id="go-score">0</strong></p>
+                        <p>Rondas superadas: <strong id="go-rounds">0</strong></p>
+                        <p>Basura atrapada: <strong id="go-caught">0</strong></p>
+                        <p>Clasificada bien: <strong id="go-sorted">0</strong></p>
+                    </div>
+
+                    <p class="community-msg">"¡Gran esfuerzo! El verdadero cambio empieza en casa. Separa tus residuos y
+                        cuida tu entorno. ¡Juntos logramos una comunidad más limpia!"</p>
+
+                    <button class="btn-main" onclick="resetGame()">Jugar de nuevo</button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- === SECCIÓN 8: FOOTER  === -->
+        <div class="nav-bottom">
+            <a href="#" onclick="irA('home-section')" class="nav-link"><h2>Inicio</h2></a>
+            <a href="#" onclick="irA('premium-section')" class="nav-link"><h2>Profesionales</h2></a>
+            <a href="#" onclick="irA('about-section')" class="nav-link"><h2>Nosotros</h2></a>
+            <a href="#" onclick="irA('game-section')" class="nav-link"><h2>Juego</h2></a>
+        </div>
+
     </div>
 
     <!-- === MODAL DE REDIRECCIÓN (OCULTO) === -->
@@ -373,10 +454,9 @@
             </button>
         </div>
     </div>
-    </div>
+
 </body>
 <script src="./js/script.js"></script>
-<script type="module" src="" ./js/config.js"></script>
 
 
 </html>
