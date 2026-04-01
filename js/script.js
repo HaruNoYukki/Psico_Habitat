@@ -871,7 +871,7 @@ async function generarMisionIA() {
 
     function showresults() {
     const descDepresion = levels.find(rango => scores.Depresion <= rango.max)?.mensajed || "Puntaje fuera de rango"; 
-    const descAnsiedad = levels.find(rango => scores.Ansiedad <= rango.max)?.mensajed || "Puntaje fuera de rango"; 
+    const descAnsiedad = levels.find(rango => scores.Ansiedad <= rango.max)?.mensajea || "Puntaje fuera de rango"; 
 
     const esAltoS1 = scores.Depresion > 9;
     const esAltoS2 = scores.Ansiedad > 9;
