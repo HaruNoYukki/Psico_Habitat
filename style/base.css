@@ -788,16 +788,29 @@ h3 {
     z-index: 10;
     /* Eliminamos el font-size y el color viejos */
 }
+
 .player-asset{
     width: 60px;
     height: auto;
     display: block;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
+
+/*
 .falling-item {
     position: absolute;
     font-size: 2.2rem;
     transform: translateX(-50%);
+}
+*/
+
+.falling-item {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 50px; /* Define el ancho en pantalla de tus items de basura */
+    height: auto;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2)); 
+    /* Elimina cualquier 'font-size' o 'color' que haya quedado aquí */
 }
 
 .ground {
@@ -960,4 +973,82 @@ h3 {
     100% {
         transform: scale(1);
     }
+}
+
+/* --- ESTILOS PARA INPUT RADIO --- */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    background: rgba(66, 116, 170, 0.3);
+    border: 1px solid rgba(248, 249, 250, 0.3);
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.radio-option:hover {
+    background: rgba(66, 116, 170, 0.5);
+    border-color: var(--white-soft);
+    transform: translateY(-2px);
+}
+
+.radio-option input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--primary-mint);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.radio-option input[type="radio"]::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--primary-mint);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.radio-option input[type="radio"]:checked {
+    background: var(--white-soft);
+    border-color: var(--white-soft);
+}
+
+.radio-option input[type="radio"]:checked::after {
+    transform: scale(1);
+}
+
+/* Estado seleccionado para la tarjeta completa */
+.radio-option:has(input[type="radio"]:checked) {
+    background: rgba(141, 227, 180, 0.2); /* Sutil tinte mint */
+    border-color: var(--primary-mint);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.radio-option span {
+    color: var(--white-soft);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    pointer-events: none;
 }

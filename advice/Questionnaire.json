@@ -1,0 +1,12 @@
+[
+    {"categoria":"Depresion", "texto":"¿Con qué frecuencia has sentido poco interés o placer en hacer las cosas que antes disfrutabas?"},
+    {"categoria":"Depresion", "texto":"¿Con qué frecuencia te has sentido triste, desanimado/a o sin esperanza sobre el futuro?"},
+    {"categoria":"Depresion", "texto":"¿Con qué frecuencia te has sentido con muy poca energía, con un cansancio extremo que no se quita descansando?"},
+    {"categoria":"Depresion", "texto":"¿Con qué frecuencia has sentido que eres un fracaso o que te has decepcionado a ti mismo/a o a los demás?"},
+    {"categoria":"Depresion", "texto":"¿Con qué frecuencia has tenido problemas para conciliar el sueño, te despiertas a media noche o, por el contrario, duermes en exceso?"},
+    {"categoria":"Ansiedad", "texto":"¿Con qué frecuencia te has sentido nervioso/a, intranquilo/a o con los \"nervios de punta\"?"},
+    {"categoria":"Ansiedad", "texto":"¿Con qué frecuencia no has podido dejar de preocuparte o te ha sido imposible controlar tus preocupaciones?"},
+    {"categoria":"Ansiedad", "texto":"¿Con qué frecuencia has tenido dificultad para relajar tu cuerpo (sientes tensión muscular, opresión en el pecho, etc.)?"},
+    {"categoria":"Ansiedad", "texto":"¿Con qué frecuencia te has sentido tan inquieto/a que te resulta muy difícil quedarte quieto/a?"},
+    {"categoria":"Ansiedad", "texto":"¿Con qué frecuencia has sentido un miedo repentino, como si algo terrible estuviera a punto de pasar sin una razón real?"}
+]

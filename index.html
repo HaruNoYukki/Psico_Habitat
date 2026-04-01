@@ -34,6 +34,36 @@
         <!-- === SECCIÓN 1: INICIO === -->
         <div id="home-section" class="section active">
 
+            <!-- CUESTIONARIO OPCIONAL-->
+             <div class="us">
+                <h1>Cuestionario Opcional</h1>
+                <p id="questionnaire-description">
+                    Este cuestionario es unicamente de reconocimiento, recuerda que un diagnostico profesional es necesario para un tratamiento adecuado.
+                </p>
+                <button class="btn-search-external" id="questionnaire-section-btn" onclick="startQuestionnaire()">
+                    <i class="fas fa-clipboard-list"></i> Empezar Cuestionario 
+                </button>
+                <div class="radio-group" id="questionnaire-responses" style="display: none;">
+                    <label class="radio-option">
+                        <input type="radio" name="opt" onclick="selectAnswer(0)"> 
+                            Muy rara vez
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="opt" onclick="selectAnswer(1)">
+                            De vez en cuando
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="opt" onclick="selectAnswer(2)"> 
+                            Frecuentemente
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="opt" onclick="selectAnswer(3)">
+                            Muy frecuentemente
+                    </label>
+                </div>
+            </div>
+
+            <!-- ENCUESTA "¿Cómo te sientes hoy?" -->
             <div class="us">
                 <h1>¿Cómo te sientes hoy?</h1>
             </div>

@@ -22,6 +22,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 // --- 1. SERVICE WORKER PARA FUNCION OFFLINE ---
+
 if ('serviceWorker' in navigator) {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js')
@@ -33,7 +34,6 @@ if ('serviceWorker' in navigator) {
             });
     }
 }
-
 
 // --- 2. BASE DE DATOS LOCAL )(MOVER A UN JSON) ---
 var bdRecursos = [
@@ -286,6 +286,8 @@ function llamarTelefono(telefono) {
 }
 
 // --- 11. SERVICE WORKER PARA FUNCION OFFLINE ---
+
+
 if ('serviceWorker' in navigator) {
     const CACHE_NAME = 'psicohabitat';
     // Archivos necesarios para la funcion offline
@@ -494,23 +496,26 @@ async function generarMisionIA() {
 }
 
 // --- 14. VIDEOJUEGO ---
-   // --- ASSETS Y DEFINICIONES ---
-    
+
+   // --- ASSETS Y DEFINICIONES ---    
     // Lo que SÍ se debe recoger
     const TRASH_TYPES = [
-    { type: 'organic', icon: 'fa-apple-whole', color: '#e74c3c' },
-    { type: 'organic', icon: 'fa-carrot', color: '#e67e22' },
-    { type: 'inorganic', icon: 'fa-plug', color: '#32CD32' },
-    { type: 'inorganic', icon: 'fa-bolt', color: '#f39c12' },
-    { type: 'recyclable', icon: 'fa-box', color: '#8e44ad' } // Cambiado
-];
+    { type: 'organic', icon: '../img/trashIcons/1.png'},
+    { type: 'recyclable', icon: '../img/trashIcons/2.png'},
+    { type: 'recyclable', icon: '../img/trashIcons/3.png'},
+    { type: 'recyclable', icon: '../img/trashIcons/4.png'},
+    { type: 'inorganic', icon: '../img/trashIcons/5.png'},
+    { type: 'inorganic', icon: '../img/trashIcons/6.png'},
+    { type: 'organic', icon: '../img/trashIcons/7.png'} // Cambiado
+    ];
     // Lo que NO se debe recoger (Esquivar)
     const LIFE_TYPES = [
-    { type: 'life', icon: 'fa-paw', color: '#a0522d' },
-    { type: 'life', icon: 'fa-crow', color: '#3498db'}, // fa-bird era Pro, fa-crow es Free
-    { type: 'life', icon: 'fa-tree', color: '#228B22' },
-    { type: 'life', icon: 'fa-bug', color: '#654321' }, // fa-bugs era nuevo, fa-bug es clásico
-    { type: 'life', icon: 'fa-clover', color: '#32CD32' } // Cambiado
+    { type: 'life', icon: '../img/lifeIcons/0.png'}, 
+    { type: 'life', icon: '../img/lifeIcons/1.png'}, 
+    { type: 'life', icon: '../img/lifeIcons/2.png'}, // fa-bird era Pro, fa-crow es Free
+    { type: 'life', icon: '../img/lifeIcons/3.png'},
+    { type: 'life', icon: '../img/lifeIcons/4.png'}, // fa-bugs era nuevo, fa-bug es clásico
+    { type: 'life', icon: '../img/lifeIcons/5.png'} // Cambiado
     ];
 
     // Combinación de ítems para el spawn (70% basura, 30% vida)
@@ -647,10 +652,11 @@ async function generarMisionIA() {
         // Seleccionar al azar de SPAWN_ITEMS
         const randomData = SPAWN_ITEMS[Math.floor(Math.random() * SPAWN_ITEMS.length)];
         
-        const el = document.createElement('i');
-        el.className = `fa-solid ${randomData.icon} falling-item`;
-        el.style.color = randomData.color;
-        
+        const el = document.createElement('img'); // Ahora creamos una imagen real  
+        el.src = randomData.icon;                 // Le asignamos la ruta de tu array
+        el.className = 'falling-item';            // Mantenemos la clase de físicas y posición
+        el.style.zIndex = "5";
+
         const containerWidth = document.getElementById('game-container').offsetWidth ;
         // Padding de 20px para no nacer pegado a la pared
         const safetyMargin = 40;
@@ -707,7 +713,8 @@ async function generarMisionIA() {
         const item = state.trashCaughtThisRound[currentSortIndex];
         const iconEl = document.getElementById('item-to-sort');
         
-        iconEl.innerHTML = `<i class="fa-solid ${item.icon}" style="color: ${item.color}"></i>`;
+        // Usamos una etiqueta img. Puedes ajustar los px a lo que se vea mejor en tu diseño
+        iconEl.innerHTML = `<img src="${item.icon}" alt="Basura" style="width: 120px; height: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));">`;
         document.getElementById('sort-progress').innerText = `${currentSortIndex + 1} / ${state.trashCaughtThisRound.length}`;
     }
 
@@ -805,3 +812,97 @@ async function generarMisionIA() {
         player.style.left = `${playerX}px`;
         updateUI();
     };
+
+// --- 15. CUESTIONARIO DE AUTODIAGNÓSTICO ---
+
+    //vaiables para el cuestionario
+    let scores = {
+    Depresion: 0,
+    Ansiedad: 0
+    };
+
+    let QuestionnaireData = null;
+    let currentQuestionIndex = 0;
+
+
+    const levels = [
+    { min: 0, max: 4, mensajed: "Tus variaciones de ánimo están dentro de lo habitual. No hay signos claros de depresión.", mensajea:"Tu nivel de tensión está dentro de lo normal. Manejas el estrés cotidiano sin que se descontrole." },
+    { min: 5, max: 9, mensajed: "Presentas indicios de depresión leve a moderada. Es posible que estés pasando por una racha de desánimo que empieza a afectar tu energía.", mensajea: " Presentas indicios de ansiedad leve a moderada. Estás experimentando picos de estrés, nerviosismo y sobrepensamiento que no te dejan descansar bien." },
+    { min: 10, max: 15, mensajed: "Presentas indicios fuertes de un cuadro depresivo. Tu estado de ánimo está afectando significativamente tu calidad de vida, tu energía y tu visión de ti mismo/a.", mensajea : " Presentas indicios fuertes de un trastorno de ansiedad. Tu sistema de alerta está hiperactivo, causándote miedo, tensión física constante y dificultad severa para relajarte." },
+    ]
+
+    async function loadQuestionnaire() {
+    try {
+        const data = await fetch('../advice/Questionnaire.json');
+        QuestionnaireData = await data.json();
+    } catch (error) {
+        console.error("Error cargando cuestionario:", error);
+    }
+    }
+    loadQuestionnaire();
+
+
+    function startQuestionnaire() {
+    let QsectionBtn = document.getElementById('questionnaire-section-btn');
+    QsectionBtn.style.display = 'none';
+    let Qresponses = document.getElementById('questionnaire-responses');
+    Qresponses.style.display = 'flex';
+    renderQuestionnaire();
+    }
+
+
+    function renderQuestionnaire() {
+    const Qdescription = document.getElementById('questionnaire-description');
+    if (currentQuestionIndex == QuestionnaireData.length) {
+        let results = showresults();
+        renderResults(results);
+        return;
+    }
+    cleanRadios();
+    Qdescription.innerText = QuestionnaireData[currentQuestionIndex].texto; // Primera pregunta
+    }
+
+    function selectAnswer(score) {
+    const categoriaActual = QuestionnaireData[currentQuestionIndex].categoria;
+    scores[categoriaActual] += score;
+    currentQuestionIndex++;
+    renderQuestionnaire();
+    }
+
+    function showresults() {
+    const descDepresion = levels.find(rango => scores.Depresion <= rango.max)?.mensajed || "Puntaje fuera de rango"; 
+    const descAnsiedad = levels.find(rango => scores.Ansiedad <= rango.max)?.mensajed || "Puntaje fuera de rango"; 
+
+    const esAltoS1 = scores.Depresion > 9;
+    const esAltoS2 = scores.Ansiedad > 9;
+
+    const interpretaciones = {
+        "true-true":"Es altamente probable que estés experimentando un cuadro mixto ansioso-depresivo. Esto es muy común, ya que la ansiedad prolongada suele agotar la energía y derivar en depresión, y viceversa. En este escenario, buscar apoyo terapéutico es el mejor paso a seguir.",
+        "true-false":"Tu perfil se inclina hacia la depresión.",
+        "false-true":"Tu perfil se inclina hacia la ansiedad.",
+        "false-false":"No se identifican indicios claros de depresión o ansiedad en tu caso."
+    };
+
+    const resultadoFinal = interpretaciones[`${esAltoS1}-${esAltoS2}`] || "Resultado no interpretable.";
+
+    return{
+        depresion: descDepresion,
+        ansiedad: descAnsiedad,
+        resultadoFinal: resultadoFinal
+    }
+    }
+
+    function renderResults(results) {
+    let Qresponses = document.getElementById('questionnaire-responses');
+    Qresponses.style.display = 'none';
+    const Qdescription = document.getElementById('questionnaire-description');
+    Qdescription.innerText = `Resultados:\n\nDepresión: ${results.depresion}\n\nAnsiedad: ${results.ansiedad}\n\n${results.resultadoFinal}`;
+    }
+
+    function cleanRadios() {
+  // Cambia "nombreDelGrupo" por el atributo 'name' que tengan tus inputs
+  const opciones = document.querySelectorAll('input[name="opt"]');
+  opciones.forEach(opcion => {
+    opcion.checked = false;
+  });
+    }

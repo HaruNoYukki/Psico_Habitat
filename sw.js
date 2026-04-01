@@ -11,7 +11,21 @@ const ASSETS_TO_CACHE = [
     '/img/icon.png',            // Corregido (antes assets/logo)
     '/img/fondo.jpg',           // Añadido para el juego
     '/img/add.svg',             // Añadido para iOS
-    '/img/share.svg'            // Añadido para iOS
+    '/img/share.svg',           // Añadido para iOS
+    '/img/trashIcons/1.png',
+    '/img/trashIcons/2.png',
+    '/img/trashIcons/3.png',
+    '/img/trashIcons/4.png',
+    '/img/trashIcons/5.png',
+    '/img/trashIcons/6.png',
+    '/img/trashIcons/7.png',
+    '/img/lifeIcons/0.png',
+    '/img/lifeIcons/1.png',
+    '/img/lifeIcons/2.png',
+    '/img/lifeIcons/3.png',
+    '/img/lifeIcons/4.png',
+    '/img/lifeIcons/5.png',
+
 ];
 // 1. Instalación: Guardar todo en local
 self.addEventListener('install', (event) => {
