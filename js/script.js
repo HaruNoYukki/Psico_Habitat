@@ -22,7 +22,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 // --- 1. SERVICE WORKER PARA FUNCION OFFLINE ---
-
 if ('serviceWorker' in navigator) {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js')
@@ -37,22 +36,23 @@ if ('serviceWorker' in navigator) {
 
 // --- 2. BASE DE DATOS LOCAL )(MOVER A UN JSON) ---
 var bdRecursos = [
-    { id: 1, tag: 'ansiedad', titulo: 'Playlist: Calma tu ansiedad', tipo: 'Web', link: 'https://open.spotify.com/playlist/6bT8zo10MdHsESTQNPXFW8?si=mqr7BTHLQBG7fPayRbniCw&pi=FOFcWn5zTGqt6' },
-    { id: 2, tag: 'ansiedad', titulo: 'Playlist: Calm your Anxiety', tipo: 'Web', link: 'https://open.spotify.com/playlist/1y5R84CnSLoLcSRb4WCFAB?si=ZqrqfbMzQMSbRvvCUmN0vA&pi=efONrH3PQzGg8' },
-    { id: 3, tag: 'ansiedad', titulo: 'App Rootd', tipo: 'App', link: "#", appCat: "Ansiedad", appName: "Rootd" },
-    { id: 4, tag: 'tristeza', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
-    { id: 5, tag: 'tristeza', titulo: 'Playlist: Rayito de Sol', tipo: 'Web', link: "https://open.spotify.com/playlist/6Ud5HZrCWAaUrhAS3B1h0D?si=LNG5a0D9Q2KeonyOpTIy9g&pi=Q6D8v6ntRgWkL" },
-    { id: 6, tag: 'tristeza', titulo: 'Playlist: Sunshine State of Mind', tipo: 'Web', link: 'https://open.spotify.com/playlist/5QGFrabx7xXp7RMlMAxXn5?si=xvZnAQ3DQv-zckg-h_nHAA&pi=TWGXySOBRnOyo' },
-    { id: 7, tag: 'tristeza', titulo: 'App I am', tipo: 'App', link: '#', appCat: "Tristeza", appName: "Iam" },
-    { id: 8, tag: 'soledad', titulo: 'Playlist: Voces Amigas', tipo: 'Web', link: 'https://open.spotify.com/playlist/4ijA8sf4ztxRjzlXEfWhb7?si=HEnHQgQRRT69fYnJ6Rg1gg&pi=icy9Z9pWR_-LH' },
-    { id: 9, tag: 'soledad', titulo: 'Playlist: Company in the Echo', tipo: 'Web', link: 'https://open.spotify.com/playlist/4oFkgJLEcCj23LBpjqncdb?si=qW8WkBxISxeGDrPRWX2OkA&pi=Gb_zArkARdqFh' },
-    //{ id: 6, tag: 'soledad', titulo: 'Comunidad Discord "Apoyo Mutuo"', tipo: 'Chat', link: '#' },
-    { id: 10, tag: 'soledad', titulo: 'App Yana', tipo: 'App', link: "#", appCat: "Soledad", appName: "Yana" },
-    { id: 11, tag: 'soledad', titulo: 'App Discord', tipo: 'App', link: "# ", appCat: "Soledad", appName: "Discord" },
-    { id: 12, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
-    { id: 13, tag: 'panico', titulo: 'App Rootd', tipo: 'App', link: "#", appCat: "Ansiedad", appName: "Rootd" },
+    { id: 1, tag: 'ansiedad', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+    { id: 2, tag: 'ansiedad', titulo: 'Playlist: Calma tu ansiedad', tipo: 'Web', link: 'https://open.spotify.com/playlist/6bT8zo10MdHsESTQNPXFW8?si=mqr7BTHLQBG7fPayRbniCw&pi=FOFcWn5zTGqt6' },
+    { id: 3, tag: 'ansiedad', titulo: 'Playlist: Calm your Anxiety', tipo: 'Web', link: 'https://open.spotify.com/playlist/1y5R84CnSLoLcSRb4WCFAB?si=ZqrqfbMzQMSbRvvCUmN0vA&pi=efONrH3PQzGg8' },
+    { id: 4, tag: 'ansiedad', titulo: 'App Rootd', tipo: 'App', link: "#", appCat: "Ansiedad", appName: "Rootd" },
+    { id: 5, tag: 'tristeza', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+    { id: 6, tag: 'tristeza', titulo: 'Playlist: Rayito de Sol', tipo: 'Web', link: "https://open.spotify.com/playlist/6Ud5HZrCWAaUrhAS3B1h0D?si=LNG5a0D9Q2KeonyOpTIy9g&pi=Q6D8v6ntRgWkL" },
+    { id: 7, tag: 'tristeza', titulo: 'Playlist: Sunshine State of Mind', tipo: 'Web', link: 'https://open.spotify.com/playlist/5QGFrabx7xXp7RMlMAxXn5?si=xvZnAQ3DQv-zckg-h_nHAA&pi=TWGXySOBRnOyo' },
+    { id: 8, tag: 'tristeza', titulo: 'App I am', tipo: 'App', link: '#', appCat: "Tristeza", appName: "Iam" },
+    { id: 9, tag: 'soledad', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+    { id: 10, tag: 'soledad', titulo: 'Playlist: Voces Amigas', tipo: 'Web', link: 'https://open.spotify.com/playlist/4ijA8sf4ztxRjzlXEfWhb7?si=HEnHQgQRRT69fYnJ6Rg1gg&pi=icy9Z9pWR_-LH' },
+    { id: 11, tag: 'soledad', titulo: 'Playlist: Company in the Echo', tipo: 'Web', link: 'https://open.spotify.com/playlist/4oFkgJLEcCj23LBpjqncdb?si=qW8WkBxISxeGDrPRWX2OkA&pi=Gb_zArkARdqFh' },
+    { id: 12, tag: 'soledad', titulo: 'App Yana', tipo: 'App', link: "#", appCat: "Soledad", appName: "Yana" },
+    { id: 13, tag: 'soledad', titulo: 'App Discord', tipo: 'App', link: "# ", appCat: "Soledad", appName: "Discord" },
+    { id: 14, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
+    { id: 15, tag: 'panico', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+    { id: 16, tag: 'panico', titulo: 'App Rootd', tipo: 'App', link: "#", appCat: "Ansiedad", appName: "Rootd" },
 ];
-
 
 function irA(sectionId) {
     console.log("Navegando a sección:", sectionId);
@@ -277,7 +277,6 @@ function appConstructor(appCat, appName) {
     }
 
 }
-
 
 
 //-- 10. LLAMADA A NUMEROS DE EMERGENCIA ---
@@ -831,6 +830,7 @@ async function generarMisionIA() {
     { min: 10, max: 15, mensajed: "Presentas indicios fuertes de un cuadro depresivo. Tu estado de ánimo está afectando significativamente tu calidad de vida, tu energía y tu visión de ti mismo/a.", mensajea : " Presentas indicios fuertes de un trastorno de ansiedad. Tu sistema de alerta está hiperactivo, causándote miedo, tensión física constante y dificultad severa para relajarte." },
     ]
 
+    //Carga de cuestionario
     async function loadQuestionnaire() {
     try {
         const data = await fetch('../advice/Questionnaire.json');
@@ -841,7 +841,7 @@ async function generarMisionIA() {
     }
     loadQuestionnaire();
 
-
+    //Iniciar cuestionario
     function startQuestionnaire() {
     let QsectionBtn = document.getElementById('questionnaire-section-btn');
     QsectionBtn.style.display = 'none';
@@ -850,7 +850,7 @@ async function generarMisionIA() {
     renderQuestionnaire();
     }
 
-
+    //Mostrar las preguntas
     function renderQuestionnaire() {
     const Qdescription = document.getElementById('questionnaire-description');
     if (currentQuestionIndex == QuestionnaireData.length) {
@@ -862,6 +862,7 @@ async function generarMisionIA() {
     Qdescription.innerText = QuestionnaireData[currentQuestionIndex].texto; // Primera pregunta
     }
 
+    //Seleccion de la respuesta con su puntaje
     function selectAnswer(score) {
     const categoriaActual = QuestionnaireData[currentQuestionIndex].categoria;
     scores[categoriaActual] += score;
@@ -869,6 +870,7 @@ async function generarMisionIA() {
     renderQuestionnaire();
     }
 
+    //Preparar resultados
     function showresults() {
     const descDepresion = levels.find(rango => scores.Depresion <= rango.max)?.mensajed || "Puntaje fuera de rango"; 
     const descAnsiedad = levels.find(rango => scores.Ansiedad <= rango.max)?.mensajea || "Puntaje fuera de rango"; 
@@ -892,6 +894,7 @@ async function generarMisionIA() {
     }
     }
 
+    //Renderizar rsultados (mostrarlos pues)
     function renderResults(results) {
     let Qresponses = document.getElementById('questionnaire-responses');
     Qresponses.style.display = 'none';
@@ -899,6 +902,7 @@ async function generarMisionIA() {
     Qdescription.innerText = `Resultados:\n\nDepresión: ${results.depresion}\n\nAnsiedad: ${results.ansiedad}\n\n${results.resultadoFinal}`;
     }
 
+    //Limpia los botoncitos circulares
     function cleanRadios() {
   // Cambia "nombreDelGrupo" por el atributo 'name' que tengan tus inputs
   const opciones = document.querySelectorAll('input[name="opt"]');

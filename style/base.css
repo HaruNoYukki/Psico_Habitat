@@ -508,14 +508,16 @@ h3 {
 }
 
 .modal-content {
-    background: white;
     padding: 30px;
     border-radius: 20px;
     text-align: center;
     max-width: 400px;
     width: 100%;
     position: relative;
-    border-bottom: 5px solid var(--primary-mint);
+    border-top: 1px solid var(--white-soft);
+    border-right: 1px solid var(--white-soft);
+    border-left: 1px solid var(--white-soft);
+    border-bottom: 5px solid var(--white-soft);
 }
 
 .modal-icon {
@@ -527,7 +529,7 @@ h3 {
 .countdown-circle {
     width: 60px;
     height: 60px;
-    background: var(--earth-sand);
+    background: var(--primary-mint);
     color: var(--text-dark);
     border-radius: 50%;
     display: flex;
