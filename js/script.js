@@ -47,11 +47,12 @@ var bdRecursos = [
     { id: 9, tag: 'soledad', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
     { id: 10, tag: 'soledad', titulo: 'Playlist: Voces Amigas', tipo: 'Web', link: 'https://open.spotify.com/playlist/4ijA8sf4ztxRjzlXEfWhb7?si=HEnHQgQRRT69fYnJ6Rg1gg&pi=icy9Z9pWR_-LH' },
     { id: 11, tag: 'soledad', titulo: 'Playlist: Company in the Echo', tipo: 'Web', link: 'https://open.spotify.com/playlist/4oFkgJLEcCj23LBpjqncdb?si=qW8WkBxISxeGDrPRWX2OkA&pi=Gb_zArkARdqFh' },
-    { id: 12, tag: 'soledad', titulo: 'App Yana', tipo: 'App', link: "#", appCat: "Soledad", appName: "Yana" },
-    { id: 13, tag: 'soledad', titulo: 'App Discord', tipo: 'App', link: "# ", appCat: "Soledad", appName: "Discord" },
-    { id: 14, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
-    { id: 15, tag: 'panico', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
-    { id: 16, tag: 'panico', titulo: 'App Rootd', tipo: 'App', link: "#", appCat: "Ansiedad", appName: "Rootd" },
+    { id: 12, tag: 'soledad', titulo: "Comunidad: Oddity Heaven", tipo: 'Web', link: 'https://discord.gg/dcS7W7Gmmg'},
+    { id: 13, tag: 'soledad', titulo: 'App Yana', tipo: 'App', link: "#", appCat: "Soledad", appName: "Yana" },
+    { id: 14, tag: 'soledad', titulo: 'App Discord', tipo: 'App', link: "# ", appCat: "Soledad", appName: "Discord" },
+    { id: 15, tag: 'panico', titulo: 'Botón de Emergencia SOS', tipo: 'Urgencia', link: 'tel:911' },
+    { id: 16, tag: 'panico', titulo: 'Línea de la Vida (24h)', tipo: 'Teléfono', link: 'tel:5551234567' },
+    { id: 17, tag: 'panico', titulo: 'App Rootd', tipo: 'App', link: "#", appCat: "Ansiedad", appName: "Rootd" },
 ];
 
 function irA(sectionId) {
